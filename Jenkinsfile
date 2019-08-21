@@ -37,7 +37,7 @@ pipeline {
                 //使用脚本重启spring boot
               //  sh "ssh -i ${guohai_org_key} ${TAG_SERVER} ${TAG_SCRIPT} restart ${TAG_PATH}/${JOB_BASE_NAME}.jar"
              //  }
-              sh "${TAG_SCRIPT} stop ${TAG_PATH}/${JOB_BASE_NAME}.jar
+              sh "${TAG_SCRIPT} stop ${TAG_PATH}/${JOB_BASE_NAME}.jar"
               sh "cp ${WORKSPACE}/target/*.jar ${TAG_PATH}/${JOB_BASE_NAME}.jar"
               sh "md5sum ${TAG_PATH}/${JOB_BASE_NAME}.jar"
               sh "${TAG_SCRIPT} restart ${TAG_PATH}/${JOB_BASE_NAME}.jar --spring.config.location=/data/config/application.yml" 
