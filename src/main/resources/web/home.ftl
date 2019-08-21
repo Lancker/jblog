@@ -71,7 +71,7 @@
 
 
 <footer class="blog-footer" role="contentinfo"><p>
-    © 2019 jBlog.joke.dog v2
+    © 2019 jBlog.joke.dog v3
 
 
 </p>
