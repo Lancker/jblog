@@ -39,7 +39,7 @@ pipeline {
              //  }
               sh "cp ${WORKSPACE}/target/*.jar ${TAG_PATH}/${JOB_BASE_NAME}.jar"
               sh "md5sum ${TAG_PATH}/${JOB_BASE_NAME}.jar"
-              sh "${TAG_SCRIPT} restart ${TAG_PATH}/${JOB_BASE_NAME}.jar" 
+              sh "${TAG_SCRIPT} restart ${TAG_PATH}/${JOB_BASE_NAME}.jar --spring.config.location=/data/config/application.yml" 
 
         }
     }
