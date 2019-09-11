@@ -1,6 +1,6 @@
 package jblog.guohai.org.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.alibaba.fastjson.annotation.JSONField;
 
 import lombok.Data;
 
@@ -10,7 +10,7 @@ public class AlipayOrderBean {
 	 * 商户订单号，必填
 	 * 
 	 */
-	@JsonProperty("out_trade_no")
+	@JSONField(name = "out_trade_no")
 	private String outTradeNo;
 	/**
 	 * 订单名称，必填
@@ -19,8 +19,10 @@ public class AlipayOrderBean {
 	/**
 	 * 付款金额，必填 根据支付宝接口协议，必须使用下划线
 	 */
-	@JsonProperty("total_amount")
+	@JSONField(name = "total_amount")
 	private String totalAmount;
+	
+	
 	/**
 	 * 商品描述，可空
 	 */
@@ -29,6 +31,6 @@ public class AlipayOrderBean {
 	/**
 	 * 产品编号
 	 */
-	@JsonProperty("product_code")
+	@JSONField(name = "product_code")
 	private String productCode;
 }

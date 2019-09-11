@@ -37,14 +37,14 @@ my-data:
   #blog二维码
   blog-qrcode: https://guohai.org/assets/wechat.jpg
 alipay:
-  #appId 设置应用Id
-  appId: 2019091167200368
+  #appId 设置应用Id 2016052201429140
+  appId: 2016052201429140
   #privateKey 设置应用私钥
   privateKey: xxxx
   #gateway 设置网关地址
   gateway:  https://openapi.alipay.com/gateway.do
   #appCertPath 设置应用公钥证书路径
-  appCertPath: /data/i.zuime.com/alipay/p.zuime.com_privatekey.txt
+  appCertPath: /data/i.zuime.com/alipay/appCertPublicKey_2016052201429140.crt
   #alipayRootCertPath 设置支付宝根证书路径
   alipayRootCertPath: /data/i.zuime.com/alipay/alipayRootCert.crt
   #设置支付宝公钥证书路径
@@ -53,5 +53,8 @@ alipay:
   returnUrl:  https://i.zuime.com/order/alipay/return
   #notifyUrl
   notifyUrl:  https://i.zuime.com/order/alipay/notify
- 
+  #alipayPublicKey  如果使用非证书，则配置
+  alipayPublicKey: xxxx
+  #aesKey
+  aesKey: EiQt/JBFbbMV9oy0Z2L82w==
   
