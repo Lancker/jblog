@@ -18,7 +18,7 @@ public class AlipayAgent {
 	/**
 	 * 网关地址
 	 */
-	@Value("${alipay.geteway}")
+	@Value("${alipay.gateway}")
 	private String gateway;
 
 	@Value("${alipay.appId}")
