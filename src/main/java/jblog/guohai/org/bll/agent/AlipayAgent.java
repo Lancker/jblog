@@ -14,7 +14,7 @@ import com.alipay.api.AlipayClient;
 import com.alipay.api.CertAlipayRequest;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.internal.util.codec.Base64;
-import com.alipay.api.request.AlipayTradeQueryRequest;
+import com.alipay.api.request.AlipayTradePagePayRequest;
 
 import jblog.guohai.org.model.AlipayOrderBean;
 
@@ -102,12 +102,13 @@ public class AlipayAgent {
 		alipayClient = new DefaultAlipayClient(certAlipayRequest);
 		
 		// 构造API请求
-		AlipayTradeQueryRequest request = new AlipayTradeQueryRequest();
+		
+		AlipayTradePagePayRequest request = new AlipayTradePagePayRequest();
 		request.setReturnUrl(returnUrl);
 		request.setNotifyUrl(notifyUrl);
 		String json = JSON.toJSONString(orderBean);
 		request.setBizContent(json);
-		return alipayClient.certificateExecute(request).getBody();
+		return alipayClient.pageExecute(request).getBody();
 	}
 
 	public String encrypt(String bizContent) throws Exception{
