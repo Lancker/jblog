@@ -36,3 +36,20 @@ my-data:
   blog-twitter: freeguo
   #blog二维码
   blog-qrcode: https://guohai.org/assets/wechat.jpg
+alipay:
+  #appId 设置应用Id
+  appId: 2019091167200368
+  #privateKey 设置应用私钥
+  privateKey: xxxx
+  #gateway 设置网关地址
+  gateway:  https://openapi.alipay.com/gateway.do
+  #appCertPath 设置应用公钥证书路径
+  appCertPath: /data/i.zuime.com/alipay/alipayCertPublicKey_RSA2.crt
+  #alipayRootCertPath 设置支付宝根证书路径
+  alipayRootCertPath: /data/i.zuime.com/alipay/alipayRootCert.crt
+  #returnUrl 
+  returnUrl:  https://i.zuime.com/order/alipay/return
+  #notifyUrl
+  notifyUrl:  https://i.zuime.com/order/alipay/notify
+ 
+  
