@@ -54,7 +54,9 @@ public class AlipayController {
 			params.put(name, valueStr);
 		}
 		if(alipayAgent.rsaCertCheckV2(params)){
-			model.addAttribute("page", alipayAgent.decrypt(params));
+			String tradeNo = params.get("out_trade_no");
+			model.addAttribute("page", String.format("签名通过,tradeNo %s", tradeNo));
+			//model.addAttribute("page", alipayAgent.decrypt(params));
 		}else{
 			model.addAttribute("page", "签名未通过");
 		}

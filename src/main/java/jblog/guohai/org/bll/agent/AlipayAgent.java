@@ -134,7 +134,14 @@ public class AlipayAgent {
 	}
 
 	public boolean rsaCertCheckV2(Map<String, String> params) throws Exception{
-		return AlipaySignature.rsaCertCheckV2(params, alipayCertPath, AlipayConstants.CHARSET_UTF8);
+		//获取
+        String sign = params.get("sign");
+        String content = AlipaySignature.getSignCheckContentV1(params);
+
+        
+        //return AlipaySignature.rsaCertCheckV1(params,alipayCertPath,AlipayConstants.CHARSET_UTF8); 
+     
+		return AlipaySignature.rsaCertCheck(content,sign, alipayCertPath, AlipayConstants.CHARSET_UTF8,AlipayConstants.SIGN_TYPE_RSA2);
 	}
 
 	
