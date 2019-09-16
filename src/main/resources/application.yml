@@ -29,18 +29,18 @@ logging:
     jblog.guohai.org.dao: debug
 my-data:
   #blog名称
-  blog-name: 海眼看世界
+  blog-name: 醉么
   #blog作者
-  blog-author: H!Guo
+  blog-author: Zuime
   #twitter账号
-  blog-twitter: freeguo
+  blog-twitter: zhongdaiqi
   #blog二维码
-  blog-qrcode: https://guohai.org/assets/wechat.jpg
+  blog-qrcode: https://i.zuime.com/static/images/wechat.jpg
 alipay:
   #appId 设置应用Id 2016052201429140
   appId: 2016052201429140
   #privateKey 设置应用私钥
-  privateKey: MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCi+ojDyXKvKrS4Ezh0WYACfXyituSDsWgq8c7IQ7M0JHAdaPJtZq1s6k6uMDkH1xIsq9RP5kPY4FnGVvuOCbH87YIeyDlRLP2UysakcPqtk7t5yq97xv1JJ0XpJxtb/BVtw8ug08cM7UqUHBtI0oWkEDKoLQH9D6nvJbrWrJY4WYMKIq68damUAO6NvJ9EBI0ltsb4cmoYs56C+1rriyteH+1GLWn2PFSOpKBucryVEW31DrenLTnDUWpJjC44EH2qMKd8xm2n2UuSZtYJqRhjKRE7+bo2Jvt4f5zSPzuYbEUqU25xm1S/lnth5U/DA1PSM3UovbcZNqNXf9iwj6a5AgMBAAECggEATfyUdRtwRWGqGGsaGJK7LnXdrf7WWi4KKoKK8El09v54p5oQZ0k6s2NrQu7QW3AOwlF2xsTosl6olsAIn28EPINqQFCPHMjqjsh5RTbKvURz8VOLpS8TBG5GhcqwzNNTbbLDPbIZDZZ+mWDZrX8Pc/JMSy0+Rlm4dzcWsKLlPxDSpPZvbh+whPVvGz9wW3gMqBWZUrVAzaM8YBoXCHiW9dhpmzhnGb4bZIxhEjDQ4MvI6SoH0z8nI2o5z233Sr8VHcj/p7q0cdh0uYHZvJlO7PnqQNksU79ARpIljbeQPrNJKUWF+DRzpgE/wwqAhXGDqC24A+CjfdUqxQzQLcJAAQKBgQDOXezbIeav6AX8Tsevs+3SRIyrPhX3aNxk+NfTKAKOY6Vd8gBzT2//kRsy6ia11Z9H4ThuxMjWKMeb82ihtZsuYcHv1fgetkqYI40mkeizwy6eiT4NkEPK/qcY1EHV5Ts8XFHbvcT6OjKUU3nIA656unNvuzUFsyWULIcNodbt0QKBgQDKLS5Yh6B9B58Xud/xbtg7I8IhJVgb787IqdMlQuI3xEegJewpLlTHpXDTqs/rb8y24tVcwnc+OkQU6zwMkbAWGbBOPdb1w3oCsth7wguIGaMCahWwdf0l+r2Cr+hBNUCkyKlqfhITxkO5kXiP+fWwIcvGVEFRirKv3j2VSiFcaQKBgEXI+Vm5AxulKLEDqv89p0SdrbwSyLbbnPwAMmvTcdnY1IkKVyCnUkZoOXxkNibzUGOsQ7shjJDvRWD1VQKqOQncQQrrnnY0StFb5FWQrdJsRI2T94n6qRIyPytkS8cbN4bX6U6Xw86ic4w5FkuPAye5eWPlOK7uv9x1mk3/1oChAoGBAJttdpbK1b+pL06fMCG89HEqwWCYBA+eIZu0q0WXELCMrf/Zh5/1JWpCruWbCLNYRMpIwnzIZ8GoK5Tlb0m+at/iqd7Mvcg8mj0e3zztZc4g32fIxJnfa1laVXz13RjcZrEILu5Ws3EOWBx+UHBnWtEoei8jsP+OIGcB9NgjoFgZAoGAJu7pLy7Xdnj0Hmr1WPj2MtjSNN7gQ7byeqB6pv9PbUrQVFucnizioyImAsXLU6U90FoWVAsgAjd2FWfyZPd7zvPidpnrpiWEreew2PzBN5HYXJ5tealR0+iixu4rOImQC7h8ZLI24bCUcB+bGdWA66s9WCnqaVmE0Xn6TLeTKjA=
+  privateKey: xxxx
   #gateway 设置网关地址
   gateway:  https://openapi.alipay.com/gateway.do
   #appCertPath 设置应用公钥证书路径
@@ -56,5 +56,5 @@ alipay:
   #alipayPublicKey  如果使用非证书，则配置
   alipayPublicKey: xxxx
   #aesKey
-  aesKey: EiQt/JBFbbMV9oy0Z2L82w==
+  aesKey: ----
   

@@ -50,7 +50,7 @@ public class AlipayController {
 						: valueStr + values[i] + ",";
 			}
 			//乱码解决，这段代码在出现乱码时使用
-			valueStr = new String(valueStr.getBytes("ISO-8859-1"), "utf-8");
+			//valueStr = new String(valueStr.getBytes("ISO-8859-1"), "utf-8");
 			params.put(name, valueStr);
 		}
 		if(alipayAgent.rsaCertCheckV2(params)){
@@ -59,6 +59,7 @@ public class AlipayController {
 			model.addAttribute("page", "签名未通过");
 		}
 		return "pay/alipay/create";
+		
 	}
 	
 	@RequestMapping(value = "pay/query")
