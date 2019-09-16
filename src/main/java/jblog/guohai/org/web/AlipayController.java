@@ -1,6 +1,11 @@
 package jblog.guohai.org.web;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,9 +37,28 @@ public class AlipayController {
 	}
 
 	@RequestMapping(value = "return")
-	public String payReturn() {
-
-		return "pay/alipay/return";
+	public String payReturn(HttpServletRequest request,Model model) throws Exception {
+		//获取支付宝GET过来反馈信息
+		Map<String,String> params = new HashMap<String,String>();
+		Map<String,String[]> requestParams = request.getParameterMap();
+		for (Iterator<String> iter = requestParams.keySet().iterator(); iter.hasNext();) {
+			String name = (String) iter.next();
+			String[] values = (String[]) requestParams.get(name);
+			String valueStr = "";
+			for (int i = 0; i < values.length; i++) {
+				valueStr = (i == values.length - 1) ? valueStr + values[i]
+						: valueStr + values[i] + ",";
+			}
+			//乱码解决，这段代码在出现乱码时使用
+			valueStr = new String(valueStr.getBytes("ISO-8859-1"), "utf-8");
+			params.put(name, valueStr);
+		}
+		if(alipayAgent.rsaCertCheckV2(params)){
+			model.addAttribute("page", alipayAgent.decrypt(params));
+		}else{
+			model.addAttribute("page", "签名未通过");
+		}
+		return "pay/alipay/create";
 	}
 	
 	@RequestMapping(value = "pay/query")
