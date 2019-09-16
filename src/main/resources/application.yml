@@ -56,5 +56,5 @@ alipay:
   #alipayPublicKey  如果使用非证书，则配置
   alipayPublicKey: xxxx
   #aesKey
-  aesKey: ----
+  aesKey: ---11111111111111
   
