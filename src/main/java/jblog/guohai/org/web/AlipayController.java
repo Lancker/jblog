@@ -107,8 +107,6 @@ public class AlipayController {
 			model.addAttribute("page", "签名未通过");
 		}
 		return "pay/alipay/create";
-		
-		
 	}
 	
 	@RequestMapping(value = "pay/query")
@@ -129,5 +127,12 @@ public class AlipayController {
 		model.addAttribute("page", alipayAgent.transferQuery(bizNo));
 		return "pay/alipay/create";
 
+	}
+	
+	@RequestMapping(value = "pay/qrcode")
+	public String qrcode(Model model) throws Exception {
+		String tradeNo = String.format("20000%s", new Date().getTime());
+		model.addAttribute("qrcode", alipayAgent.precreate(tradeNo,"醉么商城订单","1.00"));
+		return "pay/alipay/qrcode";
 	}
 }

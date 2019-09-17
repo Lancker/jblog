@@ -13,13 +13,16 @@ import com.alipay.api.CertAlipayRequest;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.domain.AlipayFundTransOrderQueryModel;
 import com.alipay.api.domain.AlipayFundTransToaccountTransferModel;
+import com.alipay.api.domain.AlipayTradePrecreateModel;
 import com.alipay.api.domain.AlipayTradeQueryModel;
 import com.alipay.api.internal.util.AlipaySignature;
 import com.alipay.api.request.AlipayFundTransOrderQueryRequest;
 import com.alipay.api.request.AlipayFundTransToaccountTransferRequest;
 import com.alipay.api.request.AlipayTradePagePayRequest;
+import com.alipay.api.request.AlipayTradePrecreateRequest;
 import com.alipay.api.request.AlipayTradeQueryRequest;
 import com.alipay.api.response.AlipayFundTransOrderQueryResponse;
+import com.alipay.api.response.AlipayTradePrecreateResponse;
 import com.alipay.api.response.AlipayTradeQueryResponse;
 
 import jblog.guohai.org.model.AlipayOrderBean;
@@ -132,15 +135,40 @@ public class AlipayAgent {
 		// 在这里检查订单的状态值
 		return response.getBody();
 	}
+	
+	/**
+	 * 预生成订单（当面付）
+	 * @param out_trade_no
+	 * @param total_amount
+	 * @return
+	 */
+	public String precreate(String outTradeNo,String subject,String totalAmount)  throws Exception {
+		AlipayClient alipayClient = buildAlipayClient();
+		AlipayTradePrecreateRequest request = new AlipayTradePrecreateRequest();
+		AlipayTradePrecreateModel model = new AlipayTradePrecreateModel();
+		model.setOutTradeNo(outTradeNo);
+		model.setTotalAmount(totalAmount);
+		model.setSubject(subject);
+		request.setBizModel(model);
+		request.setNeedEncrypt(true);
+		AlipayTradePrecreateResponse response = alipayClient.certificateExecute(request);
+		
+		// 在这里检查订单的状态值
+		return response.getQrCode();
+	}
+	
+	
 
+	/**
+	 * 修复支付宝SDK的RSA2验签Bug
+	 * @param params
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean rsaCertCheckV2(Map<String, String> params) throws Exception{
 		//获取
         String sign = params.get("sign");
         String content = AlipaySignature.getSignCheckContentV1(params);
-
-        
-        //return AlipaySignature.rsaCertCheckV1(params,alipayCertPath,AlipayConstants.CHARSET_UTF8); 
-     
 		return AlipaySignature.rsaCertCheck(content,sign, alipayCertPath, AlipayConstants.CHARSET_UTF8,AlipayConstants.SIGN_TYPE_RSA2);
 	}
 
@@ -151,6 +179,9 @@ public class AlipayAgent {
 
 		return AlipaySignature.rsaDecrypt(bizContent, privateKey, charset);
 	}
+	
+	
+
 
 	private AlipayClient buildAlipayClient() throws Exception {
 		// 构造client
