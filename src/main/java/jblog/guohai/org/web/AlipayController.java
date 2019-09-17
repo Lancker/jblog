@@ -37,6 +37,20 @@ public class AlipayController {
 		model.addAttribute("page", alipayAgent.tradePagePay(orderBean));
 		return "pay/alipay/create";
 	}
+	
+	@RequestMapping(value = "payqr")
+	public String payqr(Model model) throws Exception {
+		AlipayOrderBean orderBean = new AlipayOrderBean();
+		
+		orderBean.setOutTradeNo(String.format("20000%s", new Date().getTime()));
+		orderBean.setTotalAmount("1.00");
+		orderBean.setSubject("醉么商城订单" + String.format("Zuime%s", new Date().getTime()));
+		orderBean.setBody("醉么商城订单" + String.format("Zuime%s", new Date().getTime()));
+		orderBean.setProductCode("FAST_INSTANT_TRADE_PAY");
+
+		model.addAttribute("page", alipayAgent.tradePagePayQr(orderBean));
+		return "pay/alipay/create";
+	}
 
 	@RequestMapping(value = "return")
 	public String payReturn(HttpServletRequest request,Model model) throws Exception {
@@ -132,7 +146,8 @@ public class AlipayController {
 	@RequestMapping(value = "pay/qrcode")
 	public String qrcode(Model model) throws Exception {
 		String tradeNo = String.format("20000%s", new Date().getTime());
-		model.addAttribute("qrcode", alipayAgent.precreate(tradeNo,"醉么商城订单","1.00"));
+		model.addAttribute("tradeNo", tradeNo);
+		model.addAttribute("qrcode", alipayAgent.precreate(tradeNo,"醉么商城订单醉么商城订单醉么商城订单醉么商城订单醉么商城订单醉么商城订单醉么商城订单醉么商城订单醉么商城订单","1.00"));
 		return "pay/alipay/qrcode";
 	}
 }

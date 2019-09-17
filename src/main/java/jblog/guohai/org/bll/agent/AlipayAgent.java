@@ -13,6 +13,7 @@ import com.alipay.api.CertAlipayRequest;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.domain.AlipayFundTransOrderQueryModel;
 import com.alipay.api.domain.AlipayFundTransToaccountTransferModel;
+import com.alipay.api.domain.AlipayTradePagePayModel;
 import com.alipay.api.domain.AlipayTradePrecreateModel;
 import com.alipay.api.domain.AlipayTradeQueryModel;
 import com.alipay.api.internal.util.AlipaySignature;
@@ -95,6 +96,26 @@ public class AlipayAgent {
 		return alipayClient.pageExecute(request).getBody();
 	}
 
+	public String tradePagePayQr(AlipayOrderBean orderBean) throws Exception {
+		AlipayClient alipayClient = buildAlipayClient();
+		AlipayTradePagePayRequest request = new AlipayTradePagePayRequest();
+		AlipayTradePagePayModel model = new AlipayTradePagePayModel();
+		//request.setReturnUrl(returnUrl);
+		request.setNotifyUrl(notifyUrl);
+		model.setOutTradeNo(orderBean.getOutTradeNo());
+		model.setSubject(orderBean.getSubject());
+		model.setTotalAmount(orderBean.getTotalAmount());
+		model.setBody(orderBean.getBody());
+		model.setProductCode(orderBean.getProductCode());
+		model.setQrPayMode("4");
+		model.setQrcodeWidth(200L);
+		//model.setTimeExpire("2m");
+		model.setTimeoutExpress("2m");
+		request.setBizModel(model);
+		request.setNeedEncrypt(true);
+		return alipayClient.pageExecute(request).getBody();
+	}
+
 	public String tradeQuery(String tradeNo) throws Exception {
 		AlipayClient alipayClient = buildAlipayClient();
 		AlipayTradeQueryRequest request = new AlipayTradeQueryRequest();
@@ -135,53 +156,54 @@ public class AlipayAgent {
 		// 在这里检查订单的状态值
 		return response.getBody();
 	}
-	
+
 	/**
 	 * 预生成订单（当面付）
+	 * 
 	 * @param out_trade_no
 	 * @param total_amount
 	 * @return
 	 */
-	public String precreate(String outTradeNo,String subject,String totalAmount)  throws Exception {
+	public String precreate(String outTradeNo, String subject, String totalAmount) throws Exception {
 		AlipayClient alipayClient = buildAlipayClient();
 		AlipayTradePrecreateRequest request = new AlipayTradePrecreateRequest();
 		AlipayTradePrecreateModel model = new AlipayTradePrecreateModel();
 		model.setOutTradeNo(outTradeNo);
 		model.setTotalAmount(totalAmount);
 		model.setSubject(subject);
+		model.setBody("这是一个 body这是一个 body这是一个 body这是一个 body这是一个 body这是一个 body这是一个 body这是一个 body这是一个 body");
+		model.setTimeoutExpress("1m");
 		request.setBizModel(model);
 		request.setNeedEncrypt(true);
+		request.setReturnUrl(returnUrl);
+		request.setNotifyUrl(notifyUrl);
 		AlipayTradePrecreateResponse response = alipayClient.certificateExecute(request);
-		
+
 		// 在这里检查订单的状态值
 		return response.getQrCode();
 	}
-	
-	
 
 	/**
 	 * 修复支付宝SDK的RSA2验签Bug
+	 * 
 	 * @param params
 	 * @return
 	 * @throws Exception
 	 */
-	public boolean rsaCertCheckV2(Map<String, String> params) throws Exception{
-		//获取
-        String sign = params.get("sign");
-        String content = AlipaySignature.getSignCheckContentV1(params);
-		return AlipaySignature.rsaCertCheck(content,sign, alipayCertPath, AlipayConstants.CHARSET_UTF8,AlipayConstants.SIGN_TYPE_RSA2);
+	public boolean rsaCertCheckV2(Map<String, String> params) throws Exception {
+		// 获取
+		String sign = params.get("sign");
+		String content = AlipaySignature.getSignCheckContentV1(params);
+		return AlipaySignature.rsaCertCheck(content, sign, alipayCertPath, AlipayConstants.CHARSET_UTF8,
+				AlipayConstants.SIGN_TYPE_RSA2);
 	}
 
-	
 	public String decrypt(Map<String, String> params) throws Exception {
 		String charset = params.get("charset");
 		String bizContent = params.get("biz_content");
 
 		return AlipaySignature.rsaDecrypt(bizContent, privateKey, charset);
 	}
-	
-	
-
 
 	private AlipayClient buildAlipayClient() throws Exception {
 		// 构造client
