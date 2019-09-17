@@ -30,7 +30,8 @@
 
 
 ==
-欢迎订阅公众号：Yuema约吗 (www_yue_ma) (http://i.zuime.com/images/wechat.jpg)
+欢迎订阅公众号：Yuema约吗 (www_yue_ma)
+![http://i.zuime.com/images/wechat.jpg](http://i.zuime.com/images/wechat.jpg)
 
 欢迎订阅公众号：海哥聊技术
 
