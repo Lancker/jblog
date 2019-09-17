@@ -9,6 +9,7 @@
 4. 支持后台登录，后台用户名密码存储在DB中。
 5. 登录后会生成一个UUID，存储于cookies中。UUID对应的服务器缓存在一个静态变量中。重启站点所有用户下线。
 6. 评论功能目前使用的第三方。需要翻墙
+7. 集成支付宝网站支付、扫码支付、当面付、转账、查询接口
 
 ## Wiki索引
 
@@ -29,7 +30,10 @@
 
 
 ==
-
 欢迎订阅公众号：海哥聊技术
 
 ![http://guohai.org/assets/wechat.jpg](http://guohai.org/assets/wechat.jpg)
+
+欢迎订阅公众号：Yuema约吗 (www_yue_ma)
+
+![http://i.zuime.com/images/yuemaqrcode.jpg](http://i.zuime.com/images/yuemaqrcode.jpg
