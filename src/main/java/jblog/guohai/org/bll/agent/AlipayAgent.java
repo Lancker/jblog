@@ -115,6 +115,26 @@ public class AlipayAgent {
 		model.setQrcodeWidth(200L);
 		//model.setTimeExpire("2m");
 		model.setTimeoutExpress("2m");
+		request.setBizModel(model);
+		request.setNeedEncrypt(true);
+		return alipayClient.pageExecute(request).getBody();
+	}
+	
+	public String tradePagePayQrHb(AlipayOrderBean orderBean) throws Exception {
+		AlipayClient alipayClient = buildAlipayClient();
+		AlipayTradePagePayRequest request = new AlipayTradePagePayRequest();
+		AlipayTradePagePayModel model = new AlipayTradePagePayModel();
+		//request.setReturnUrl(returnUrl);
+		request.setNotifyUrl(notifyUrl);
+		model.setOutTradeNo(orderBean.getOutTradeNo());
+		model.setSubject(orderBean.getSubject());
+		model.setTotalAmount(orderBean.getTotalAmount());
+		model.setBody(orderBean.getBody());
+		model.setProductCode(orderBean.getProductCode());
+		model.setQrPayMode("4");
+		model.setQrcodeWidth(200L);
+		//model.setTimeExpire("2m");
+		model.setTimeoutExpress("2m");
 		ExtendParams params = new ExtendParams();
 		params.setHbFqNum("3");
 		params.setHbFqSellerPercent("0");

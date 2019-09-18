@@ -52,6 +52,20 @@ public class AlipayController {
 		return "pay/alipay/create";
 	}
 
+	@RequestMapping(value = "payqrhb")
+	public String payqrhb(Model model) throws Exception {
+		AlipayOrderBean orderBean = new AlipayOrderBean();
+		
+		orderBean.setOutTradeNo(String.format("20000%s", new Date().getTime()));
+		orderBean.setTotalAmount("1.00");
+		orderBean.setSubject("醉么商城订单" + String.format("Zuime%s", new Date().getTime()));
+		orderBean.setBody("醉么商城订单" + String.format("Zuime%s", new Date().getTime()));
+		orderBean.setProductCode("FAST_INSTANT_TRADE_PAY");
+
+		model.addAttribute("page", alipayAgent.tradePagePayQrHb(orderBean));
+		return "pay/alipay/create";
+	}
+
 	@RequestMapping(value = "return")
 	public String payReturn(HttpServletRequest request,Model model) throws Exception {
 		//获取支付宝GET过来反馈信息
