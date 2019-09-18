@@ -17,6 +17,9 @@
 6. 评论功能目前使用的第三方。需要翻墙
 7. 集成支付宝网站支付、扫码支付、当面付、转账、查询接口
 
+#更新日志
+2019.09.18 增加花呗支付demo https://i.zuime.com/order/alipay/payqrhb
+
 ## Wiki索引
 
 * [安装说明](https://github.com/guohai163/jblog/wiki/How-To-Install)
