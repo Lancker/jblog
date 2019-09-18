@@ -17,6 +17,7 @@ import com.alipay.api.domain.AlipayFundTransToaccountTransferModel;
 import com.alipay.api.domain.AlipayTradePagePayModel;
 import com.alipay.api.domain.AlipayTradePrecreateModel;
 import com.alipay.api.domain.AlipayTradeQueryModel;
+import com.alipay.api.domain.ExtendParams;
 import com.alipay.api.internal.util.AlipaySignature;
 import com.alipay.api.request.AlipayFundAccountQueryRequest;
 import com.alipay.api.request.AlipayFundTransOrderQueryRequest;
@@ -114,6 +115,10 @@ public class AlipayAgent {
 		model.setQrcodeWidth(200L);
 		//model.setTimeExpire("2m");
 		model.setTimeoutExpress("2m");
+		ExtendParams params = new ExtendParams();
+		params.setHbFqNum("3");
+		params.setHbFqSellerPercent("0");
+		model.setExtendParams(params);
 		request.setBizModel(model);
 		request.setNeedEncrypt(true);
 		return alipayClient.pageExecute(request).getBody();
