@@ -150,4 +150,11 @@ public class AlipayController {
 		model.addAttribute("qrcode", alipayAgent.precreate(tradeNo,"醉么商城订单醉么商城订单醉么商城订单醉么商城订单醉么商城订单醉么商城订单醉么商城订单醉么商城订单醉么商城订单","1.00"));
 		return "pay/alipay/qrcode";
 	}
+	
+	@RequestMapping(value = "account/query")
+	public String accountQuery(Model model) throws Exception {
+		model.addAttribute("page", alipayAgent.accountQuery());
+		return "pay/alipay/create";
+
+	}
 }

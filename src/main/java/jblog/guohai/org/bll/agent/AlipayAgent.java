@@ -11,17 +11,20 @@ import com.alipay.api.AlipayClient;
 import com.alipay.api.AlipayConstants;
 import com.alipay.api.CertAlipayRequest;
 import com.alipay.api.DefaultAlipayClient;
+import com.alipay.api.domain.AlipayFundAccountQueryModel;
 import com.alipay.api.domain.AlipayFundTransOrderQueryModel;
 import com.alipay.api.domain.AlipayFundTransToaccountTransferModel;
 import com.alipay.api.domain.AlipayTradePagePayModel;
 import com.alipay.api.domain.AlipayTradePrecreateModel;
 import com.alipay.api.domain.AlipayTradeQueryModel;
 import com.alipay.api.internal.util.AlipaySignature;
+import com.alipay.api.request.AlipayFundAccountQueryRequest;
 import com.alipay.api.request.AlipayFundTransOrderQueryRequest;
 import com.alipay.api.request.AlipayFundTransToaccountTransferRequest;
 import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.alipay.api.request.AlipayTradePrecreateRequest;
 import com.alipay.api.request.AlipayTradeQueryRequest;
+import com.alipay.api.response.AlipayFundAccountQueryResponse;
 import com.alipay.api.response.AlipayFundTransOrderQueryResponse;
 import com.alipay.api.response.AlipayTradePrecreateResponse;
 import com.alipay.api.response.AlipayTradeQueryResponse;
@@ -181,6 +184,23 @@ public class AlipayAgent {
 
 		// 在这里检查订单的状态值
 		return response.getQrCode();
+	}
+	
+	/**
+	 *  余额查询
+	 * @return
+	 */
+	public String accountQuery() throws Exception{
+		AlipayClient alipayClient = buildAlipayClient();
+		AlipayFundAccountQueryRequest request = new AlipayFundAccountQueryRequest();
+		AlipayFundAccountQueryModel model = new AlipayFundAccountQueryModel();
+		model.setAlipayUserId("2088021741763089");
+		model.setAccountType("ACCTRANS_ACCOUNT");
+		model.setAccountSceneCode("SCENE_000_000_000");
+		request.setBizModel(model);
+		request.setNeedEncrypt(true);
+		AlipayFundAccountQueryResponse response = alipayClient.certificateExecute(request);
+		return response.getBody();
 	}
 
 	/**
