@@ -32,7 +32,7 @@ public class TencentCaptchaAgent {
 	private String appSecretKey;
 	
 	
-	public String verify(String ticket,String randstr){
+	public String verify(String ticket,String randstr,String userIp){
 		 try{
 	            // 实例化一个认证对象，入参需要传入腾讯云账户secretId，secretKey
 	            Credential cred = new Credential(secretId, secretKey);
@@ -50,6 +50,7 @@ public class TencentCaptchaAgent {
 	            req.setCaptchaAppId(captchaAppId);
 	            req.setAppSecretKey(appSecretKey);
 	            req.setRandstr(randstr);
+	            req.setUserIp(userIp);
 	            
 	            
 	            // 通过client对象调用想要访问的接口，需要传入请求对象

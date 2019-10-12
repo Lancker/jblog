@@ -1,6 +1,8 @@
 
 package jblog.guohai.org.web;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +32,7 @@ public class TencentController {
 
 	@RequestMapping(value = "verify")
 	@ResponseBody
-	public String verify(Model model, String ticket, String randstr) throws Exception {
-		return tencentCaptchaAgent.verify(ticket, randstr);
+	public String verify(Model model, String ticket, String randstr,HttpServletRequest request) throws Exception {
+		return tencentCaptchaAgent.verify(ticket, randstr,request.getRemoteAddr());
 	}
 }
