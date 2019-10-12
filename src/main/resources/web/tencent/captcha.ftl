@@ -11,7 +11,7 @@
 	<script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
 </head>
 <body>
-
+腾讯云验证码 demo
 <button id="TencentCaptcha"
      data-appid="2046804662"
      data-cbfn="callback"
