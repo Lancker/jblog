@@ -57,4 +57,10 @@ alipay:
   alipayPublicKey: xxxx
   #aesKey
   aesKey: lNFv6txnZU2c++zlsukM3A==
-  
+pingan: 
+  serverIp: 127.0.0.1
+  charset: GBK
+  yqdm: 01001034300004541000
+  signingAccount: 15000090253873
+  #单位代码（协议号）
+  dwdm: Q000201202

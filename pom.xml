@@ -93,14 +93,43 @@
         </dependency>
         
 
+ <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+        </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/org.dom4j/dom4j -->
+<dependency>
+    <groupId>org.dom4j</groupId>
+    <artifactId>dom4j</artifactId>
+    <version>2.1.1</version>
+</dependency>
 
+<!-- https://mvnrepository.com/artifact/commons-httpclient/commons-httpclient -->
+<dependency>
+    <groupId>commons-httpclient</groupId>
+    <artifactId>commons-httpclient</artifactId>
+    <version>3.1</version>
+</dependency>
+
+        
+        
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
-
+		
+		<dependency>
+		    <groupId>com.tencentcloudapi</groupId>
+		    <artifactId>tencentcloud-sdk-java</artifactId>
+		    <!-- go to https://search.maven.org/search?q=tencentcloud-sdk-java and get the latest version. -->
+		    <!-- 请到https://search.maven.org/search?q=tencentcloud-sdk-java查询最新版本 -->
+		    <version>3.0.95</version>
+		</dependency>
+		
     </dependencies>
     
 

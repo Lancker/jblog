@@ -181,6 +181,7 @@ public class AlipayAgent {
 		request.setBizModel(model);
 		request.setNeedEncrypt(true);
 		AlipayFundTransOrderQueryResponse response = alipayClient.certificateExecute(request);
+
 		// 在这里检查订单的状态值
 		return response.getBody();
 	}
