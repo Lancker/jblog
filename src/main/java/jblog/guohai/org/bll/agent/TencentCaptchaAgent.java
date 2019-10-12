@@ -45,8 +45,8 @@ public class TencentCaptchaAgent {
 	            DescribeCaptchaResultRequest req = new DescribeCaptchaResultRequest();
 	            req.setCaptchaType(9L);
 	            req.setTicket(ticket);
-	            req.setCaptchaAppId(2046804662L);
-	            req.setAppSecretKey("05lhzYMzdWuhUpg3Lfz5Kow**");
+	            req.setCaptchaAppId(captchaAppId);
+	            req.setAppSecretKey(appSecretKey);
 	            req.setRandstr(randstr);
 	            
 	            
