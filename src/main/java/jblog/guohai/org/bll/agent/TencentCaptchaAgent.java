@@ -1,6 +1,7 @@
 package jblog.guohai.org.bll.agent;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import com.tencentcloudapi.captcha.v20190722.CaptchaClient;
 import com.tencentcloudapi.captcha.v20190722.models.DescribeCaptchaResultRequest;
@@ -9,6 +10,7 @@ import com.tencentcloudapi.common.Credential;
 import com.tencentcloudapi.common.exception.TencentCloudSDKException;
 import com.tencentcloudapi.common.profile.ClientProfile;
 
+@Service
 public class TencentCaptchaAgent {
 
 	/**
