@@ -18,6 +18,8 @@
      type="button"
 >验证</button>
 
+
+<#include "/inc/foot.ftl" />
 <script>
 window.callback = function(res){
  console.log(res)
@@ -25,7 +27,14 @@ window.callback = function(res){
  // res（验证成功） = {ret: 0, ticket: "String", randstr: "String"}
  if(res.ret === 0){
      alert(res.ticket);   // 票据
-     console.log(res);
+     $.get("/tencent/verify",
+     	{
+     		ticket:res.ticket,
+     		randstr:res.randstr
+     	}
+     	,function(data){
+     	alert(data);
+     });
  }
 }
 </script>
