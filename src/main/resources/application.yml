@@ -64,3 +64,10 @@ pingan:
   signingAccount: 15000090253873
   #单位代码（协议号）
   dwdm: Q000201202
+ tencent: 
+  secretId: AKIDxlT1NXGU0NZggUOf4vb5Umtoakmd4qEQ
+  secretKey: 993ub60jGbTGxTn14vfERUL1aGn9QWRB
+  captcha:
+    captchaAppId: 2046804662
+    appSecretKey: '05lhzYMzdWuhUpg3Lfz5Kow**'
+  
