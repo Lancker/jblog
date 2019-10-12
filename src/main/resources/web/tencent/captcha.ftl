@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>${blog_name} - ${content.postTitle}</title>
+	<title>腾讯云验证码 demo</title>
 	
 	<link rel="stylesheet" type="text/css" href="/css/style.css"/>
 	
