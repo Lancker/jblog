@@ -34,7 +34,7 @@ public class TencentController {
 	public String verify(Model model,String ticket,String randstr) throws Exception {
 	     try{
 	            // 实例化一个认证对象，入参需要传入腾讯云账户secretId，secretKey
-	            Credential cred = new Credential("2046804662L", "05lhzYMzdWuhUpg3Lfz5Kow**");
+	            Credential cred = new Credential("2046804662", "05lhzYMzdWuhUpg3Lfz5Kow**");
 	            
 	            // 实例化要请求产品(以cvm为例)的client对象
 	            ClientProfile clientProfile = new ClientProfile();
@@ -59,7 +59,7 @@ public class TencentController {
 	            return DescribeCaptchaResultRequest.toJsonString(resp);
 	        } catch (TencentCloudSDKException e) {
 	                System.out.println(e.toString());
-	            	return "e.toString()";
+	            	return e.toString();
 	        }
 	
 	}
