@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 server:
   port: 8002
   tomcat:
@@ -71,7 +70,7 @@ tencent:
   captcha:
     captchaAppId: 2046804662
     appSecretKey: 'xxxxx'
- aliyunoss:
+aliyunoss:
   accessid: LTAIDcvZxsya2fCK
   accesskey: qFvLVHp6UOiEq9NRZ66BPkGZPjQsQ7
   endpoint: oss-cn-beijing.aliyuncs.com
