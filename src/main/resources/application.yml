@@ -37,6 +37,8 @@ my-data:
     blog-twitter: zhongdaiqi
     #blog二维码
     blog-qrcode: https://i.zuime.com/static/images/wechat.jpg
+    #blog域名
+    blog-domain: https://i.zuime.com
   aliyunoss:
     accessid: LTAIDcvZxsya2fCK
     accesskey: qFvLVHp6UOiEq9NRZ66BPkGZPjQsQ7
