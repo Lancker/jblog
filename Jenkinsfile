@@ -42,7 +42,7 @@ pipeline {
               sh "md5sum ${TAG_PATH}/${JOB_BASE_NAME}.jar"
               sh "${TAG_SCRIPT} restart ${TAG_PATH}/${JOB_BASE_NAME}.jar --spring.config.location=/data/config/application.yml" 
               //sh "ssh -i ${guohai_org_key} ${TAG_SERVER} ${TAG_SCRIPT} restart ${TAG_PATH}/${JOB_BASE_NAME}.jar --spring.config.location=${TAG_PATH}/application.yml"
-            }
+            //}
         }
     }
   }
