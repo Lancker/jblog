@@ -37,6 +37,13 @@ my-data:
     blog-twitter: zhongdaiqi
     #blog二维码
     blog-qrcode: https://i.zuime.com/static/images/wechat.jpg
+  aliyunoss:
+    accessid: LTAIDcvZxsya2fCK
+    accesskey: qFvLVHp6UOiEq9NRZ66BPkGZPjQsQ7
+    endpoint: oss-cn-beijing.aliyuncs.com
+    bucket: guohaiblog
+    #是否使用回调，建议使用回调更安全
+    is-callback: true
 alipay:
   #appId 设置应用Id 2016052201429140
   appId: 2016052201429140
@@ -71,10 +78,3 @@ tencent:
   captcha:
     captchaAppId: 2046804662
     appSecretKey: 'xxxxx'
-aliyunoss:
-  accessid: LTAIDcvZxsya2fCK
-  accesskey: qFvLVHp6UOiEq9NRZ66BPkGZPjQsQ7
-  endpoint: oss-cn-beijing.aliyuncs.com
-  bucket: guohaiblog
-  #是否使用回调，建议使用回调更安全
-  is-callback: true
