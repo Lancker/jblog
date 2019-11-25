@@ -32,3 +32,9 @@ build/
 .vscode/
 classes/
 
+<<<<<<< HEAD
+=======
+
+### macOS ###
+.DS_Store
+>>>>>>> 816fa7abba8274bc33aef0d1deb1265bdfc8af65

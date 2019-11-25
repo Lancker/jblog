@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 server:
   port: 8002
   tomcat:
@@ -71,3 +72,51 @@ tencent:
     captchaAppId: 2046804662
     appSecretKey: 'xxxxx'
   
+=======
+server:
+  port: 8002
+  tomcat:
+    uri-encoding: UTF-8
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      url: jdbc:mysql://localhost:3306/jblog?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+      username: root
+      password: password
+  freemarker:
+    template-loader-path: classpath:/web/
+    cache: false
+    charset: UTF-8
+    content-type: text/html
+    suffix: .ftl
+    check-template-location: true
+    expose-request-attributes: true
+    expose-session-attributes: true
+    request-context-attribute: request
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+logging:
+  level:
+    jblog.guohai.org.dao: debug
+my-data:
+  config:
+    #blog名称
+    blog-name: 海眼看世界
+    #blog域名
+    blog-domain: http://jblog.guohai.org
+    #blog作者
+    blog-author: H!Guo
+    #twitter账号
+    blog-twitter: freeguo
+    #blog二维码
+    blog-qrcode: https://guohai.org/assets/wechat.jpg
+  aliyunoss:
+    accessid: LTAIDcvZxsya2fCK
+    accesskey: qFvLVHp6UOiEq9NRZ66BPkGZPjQsQ7
+    endpoint: oss-cn-beijing.aliyuncs.com
+    bucket: guohaiblog
+    #是否使用回调，建议使用回调更安全
+    is-callback: true
+>>>>>>> 816fa7abba8274bc33aef0d1deb1265bdfc8af65

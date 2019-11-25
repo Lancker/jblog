@@ -10,7 +10,7 @@
     </parent>
     <groupId>org.guohai</groupId>
     <artifactId>jblog</artifactId>
-    <version>0.2.1</version>
+    <version>0.4.0</version>
     <name>jblog</name>
     <description>java blog project</description>
 
@@ -34,11 +34,13 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
+        
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
+        
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -77,6 +79,7 @@
             <artifactId>flexmark-ext-tables</artifactId>
             <version>0.50.24</version>
         </dependency>
+<<<<<<< HEAD
 
         <!--markdown to html end-->
         <!--<dependency>-->
@@ -100,21 +103,18 @@
         </dependency>
         
         <!-- https://mvnrepository.com/artifact/org.dom4j/dom4j -->
-<dependency>
-    <groupId>org.dom4j</groupId>
-    <artifactId>dom4j</artifactId>
-    <version>2.1.1</version>
-</dependency>
+	<dependency>
+	    <groupId>org.dom4j</groupId>
+	    <artifactId>dom4j</artifactId>
+	    <version>2.1.1</version>
+	</dependency>
 
-<!-- https://mvnrepository.com/artifact/commons-httpclient/commons-httpclient -->
-<dependency>
-    <groupId>commons-httpclient</groupId>
-    <artifactId>commons-httpclient</artifactId>
-    <version>3.1</version>
-</dependency>
-
-        
-        
+    <!-- https://mvnrepository.com/artifact/commons-httpclient/commons-httpclient -->
+	<dependency>
+	    <groupId>commons-httpclient</groupId>
+	    <artifactId>commons-httpclient</artifactId>
+	    <version>3.1</version>
+	</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -130,6 +130,14 @@
 		    <version>3.0.95</version>
 		</dependency>
 		
+
+         <!-- aliyun对象存储-->
+        <dependency>
+            <groupId>com.aliyun.oss</groupId>
+            <artifactId>aliyun-sdk-oss</artifactId>
+            <version>3.5.0</version>
+        </dependency>
+
     </dependencies>
     
 

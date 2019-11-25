@@ -1,41 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<title>${blog_name}</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/css/jblog.css" />
-	<link rel="stylesheet" href="/css/jquery-confirm.min.css">
+    <#include "/inc/admin-head.ftl" />
 </head>
 <body>
-<div class="admin-main">
+    <section class="main-section">
+    <#include "/inc/admin-header.ftl" />
+    <section class="main-down">
+        <#assign ftlname = .current_template_name>
+        <#include "/inc/admin-left.ftl" />
+        <!--右侧区域-->
+        <section class="right-content">
+            <section class="vbox">
+                <header class="panel-heading">
+                    <p><strong>BLOG列表</strong></p>
+                </header>
+                <!--表格主体-->
+                <section class="scrollable padder">
+                    <div class="m-b-md">
+                    </div>
+                    <section class="panel panel-default">
+                        <div class="table-responseive">
+                            <table class="table table-striped">
+                                <thead><tr><th>标题</th><th>分类</th><th>时间</th><th>操作</th></tr></thead>
+                                <tbody>
+                                    <#list listContent as content>
+                                    <tr><td><#if content.postTitle?length gt 21>${content.postTitle?substring(0,20)}...<#else>${content.postTitle}</#if></td>
+                                    <td><select class="classify-type">
+                                        <#if content.classCode == 0><option value="0" selected>文章归类...</option></#if>
+                                        <#list classTypeList as classItem>
+                                            <option value="${classItem.classCode}" post_code="${content.postCode}" <#if classItem.classCode == content.classCode> selected</#if> >${classItem.className}</option>
+                                        </#list>
+                                    </select></td>
+                                    <td><time class="float-right" datetime="${content.postDate?string('yyyy-MM-dd')}">${content.postDate?string('yyyy-MM-dd')}</time></td>
 
-    <#include "/inc/admin-left.ftl"/>
-    <div class="admin-body">
-        <div class="ul-head"><h2>BLOG列表</h2></div>
-        <ul class="admin-ul">
-            <#list listContent as content>
-                <li class="admin-li">
-                <#if content.postStatus == "publish">🔵<#else>🔴</#if>
-                <#if content.postTitle?length gt 21>${content.postTitle?substring(0,20)}...
-                <#else>${content.postTitle}</#if>
-                <span class="float-right">
-                <a class="li-btn li-btn-del" id="${content.postCode}">del</a>
-                <a class="li-btn" href="/admin/main?postCode=${content.postCode}">edit</a></span>
-                <time class="float-right" datetime="${content.postDate?string('yyyy-MM-dd')}">${content.postDate?string('yyyy-MM-dd')}</time>
-                
-                </li>
-            </#list>
-        </ul>
+                                    <td><a class="li-btn li-btn-del" id="${content.postCode}">del</a><a class="li-btn" href="/admin/main?postCode=${content.postCode}">edit</a></td>
+                                    </tr>
+                                    </#list>
+                                </tbody>
+                            </table>
+                        </div>
 
+
+        
+
+
+                    </section>
+                </section>
         <div>
         <span><#if (maxPageNum > pageNum)><a href="/admin/list?page=${pageNum+1}">上一页</a></#if></span>
         <span class="float-right"><#if (pageNum > 1)><a href="/admin/list?page=${pageNum-1}">下一页</a></#if></span>
         </div>
+            </section>        
+        </section>
+    </section>
+    </section>
 
-    </div>
-</div>
+
 <#include "/inc/foot.ftl"/>
 
 </body>

@@ -1,7 +1,9 @@
 package jblog.guohai.org.service;
 
 import jblog.guohai.org.model.BlogContent;
+import jblog.guohai.org.model.ClassType;
 import jblog.guohai.org.model.Result;
+import jblog.guohai.org.model.UserModel;
 
 import java.util.List;
 
@@ -33,4 +35,24 @@ public interface AdminService {
      * @return
      */
     Result<String> updatePostBlog(BlogContent blog);
+
+    /**
+     * 设置用户密码
+     * @param user
+     * @return
+     */
+    Result<String> setUserPass(UserModel user);
+
+    /**
+     * 增加一篇BLOG
+     * @param blog BLOG实体
+     * @return 返回结果情况
+     */
+    Result<String> addPostBlog(BlogContent blog);
+
+    /**
+     * 更新热词
+     * @return
+     */
+    Result<String> renewHotkey();
 }
