@@ -124,6 +124,7 @@ public class AdminController {
         if (null != postCode) {
             BlogContent blog = blogService.getByID(postCode);
             model.addAttribute("blog", blog);
+            model.addAttribute("user_avatar", "haha");
         }
         return "admin/main";
     }
@@ -221,6 +222,7 @@ public class AdminController {
      */
     @RequestMapping(value = "/security")
     public String adminSecurity(Model model) {
+    	 model.addAttribute("user_avatar", "haha");
         return "admin/security";
     }
 
@@ -235,6 +237,7 @@ public class AdminController {
         // 获取文章分类列表
         List<ClassType> classTypeList = blogService.getClassList();
         model.addAttribute("classTypeList", classTypeList);
+        model.addAttribute("user_avatar", "haha");
         return "admin/class";
     }
 
@@ -302,6 +305,7 @@ public class AdminController {
     @RequestMapping(value = "/hotkey")
     public String adminHotkey(Model model) {
         model.addAttribute("hotkey_list", blogService.getHotkeyList());
+        model.addAttribute("user_avatar", "haha");
         return "admin/hotkey";
     }
 
