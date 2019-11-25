@@ -13,18 +13,13 @@ import com.tencentcloudapi.common.profile.ClientProfile;
 @Service
 public class TencentCaptchaAgent {
 
-	/**
-	 * 网关地址
-	 */
+
 	@Value("${tencent.secretId}")
 	private String secretId;
 
 	@Value("${tencent.secretKey}")
 	private String secretKey;
 	
-	/**
-	 * 网关地址
-	 */
 	@Value("${tencent.captcha.captchaAppId}")
 	private Long captchaAppId;
 
@@ -58,6 +53,7 @@ public class TencentCaptchaAgent {
 	            
 	            // 输出json格式的字符串回包
 	            System.out.println(DescribeCaptchaResultRequest.toJsonString(resp));
+	            
 	            return DescribeCaptchaResultRequest.toJsonString(resp);
 	        } catch (TencentCloudSDKException e) {
 	                System.out.println(e.toString());

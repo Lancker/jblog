@@ -196,6 +196,7 @@ public class AlipayAgent {
 	public String precreate(String outTradeNo, String subject, String totalAmount) throws Exception {
 		AlipayClient alipayClient = buildAlipayClient();
 		AlipayTradePrecreateRequest request = new AlipayTradePrecreateRequest();
+		//request.setNotifyUrl(totalAmount);
 		AlipayTradePrecreateModel model = new AlipayTradePrecreateModel();
 		model.setOutTradeNo(outTradeNo);
 		model.setTotalAmount(totalAmount);
