@@ -121,10 +121,11 @@ public class AdminController {
     @RequestMapping(value = "/main")
     public String adminMain(Model model, Integer postCode) {
         System.out.println(postCode);
+        model.addAttribute("user_avatar", "haha");
         if (null != postCode) {
             BlogContent blog = blogService.getByID(postCode);
             model.addAttribute("blog", blog);
-            model.addAttribute("user_avatar", "haha");
+           
         }
         return "admin/main";
     }
