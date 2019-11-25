@@ -28,14 +28,15 @@ logging:
   level:
     jblog.guohai.org.dao: debug
 my-data:
-  #blog名称
-  blog-name: 醉么
-  #blog作者
-  blog-author: Zuime
-  #twitter账号
-  blog-twitter: zhongdaiqi
-  #blog二维码
-  blog-qrcode: https://i.zuime.com/static/images/wechat.jpg
+  config:
+    #blog名称
+    blog-name: 醉么
+    #blog作者
+    blog-author: Zuime
+    #twitter账号
+    blog-twitter: zhongdaiqi
+    #blog二维码
+    blog-qrcode: https://i.zuime.com/static/images/wechat.jpg
 alipay:
   #appId 设置应用Id 2016052201429140
   appId: 2016052201429140
