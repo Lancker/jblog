@@ -152,6 +152,8 @@ public class AdminController {
         List<BlogContent> list = adminService.getBackstageList(page);
         model.addAttribute("listContent", list);
         model.addAttribute("pageNum", page);
+        
+        model.addAttribute("user_avatar", "haha");
 
         model.addAttribute("maxPageNum", adminService.getBackstageMaxPageNum());
         // 获取文章分类列表
