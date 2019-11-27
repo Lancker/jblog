@@ -7,7 +7,7 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/css/jblog.css">
 	<link rel="stylesheet" type="text/css" href="/css/jquery-confirm.min.css"/>
-	<script src="https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"/>
+	
 </head>
 <body>
 	
@@ -45,10 +45,11 @@
 	<div id="dropDownSelect1"></div>
 	
 <#include "/inc/foot.ftl"/>
+<script src="https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"/>
 <script>
 var obj = new WxLogin({
  self_redirect:true,
- id:"login_container", 
+ id:"wx_login_container", 
  appid: "wxabb111e0dd2d1da9", 
  scope: "snsapi_login", 
  redirect_uri: "i.zuime.com/admin/wechat/login",
