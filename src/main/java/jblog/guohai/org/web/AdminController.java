@@ -366,4 +366,18 @@ public class AdminController {
         return new Result<>(true,"success");
 
     }
+    
+    /**
+     * 微信登陆
+     * @param code
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/wechat/login")
+    public Result<String> wechatLogin(String code) {
+
+        return new Result<>(true,"待完善功能 code:"+code);
+
+
+    }
 }
