@@ -7,7 +7,7 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/css/jblog.css">
 	<link rel="stylesheet" type="text/css" href="/css/jquery-confirm.min.css"/>
-	<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"/>
+	<script src="https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"/>
 </head>
 <body>
 	
