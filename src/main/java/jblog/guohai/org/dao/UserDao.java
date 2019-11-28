@@ -34,4 +34,14 @@ public interface UserDao {
      */
     @Update("UPDATE jblog_user SET user_avatar=#{user.userAvatar} WHERE user_code=#{user.userCode};")
     Boolean setUserAvataByCode(@Param("user") UserModel user);
+    
+    /**
+     * 查找用户根据用户名
+     * @param userName 用户名
+     * @return 用户实体
+     */
+    @Select("SELECT * FROM jblog_user WHERE user_code=#{userCode};")
+    UserModel getUserByCode(@Param("userCode") int userCode);
+    
+    
 }

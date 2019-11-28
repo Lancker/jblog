@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
+
 import freemarker.template.TemplateModelException;
 import jblog.guohai.org.bll.agent.WechatAgent;
 import jblog.guohai.org.model.AliyunOssSignature;
@@ -28,10 +30,12 @@ import jblog.guohai.org.model.BlogContent;
 import jblog.guohai.org.model.ClassType;
 import jblog.guohai.org.model.Result;
 import jblog.guohai.org.model.UserModel;
+import jblog.guohai.org.model.WxAccessTokenBean;
 import jblog.guohai.org.service.AdminService;
 import jblog.guohai.org.service.BlogService;
 import jblog.guohai.org.service.UserService;
 import jblog.guohai.org.service.UserServiceImpl;
+import jblog.guohai.org.util.JsonTool;
 import jblog.guohai.org.util.MarkdownToHtml;
 import jblog.guohai.org.util.Signature;
 
@@ -391,9 +395,29 @@ public class AdminController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/wechat/login")
-	public Result<String> wechatLogin(String code) {
-		
-		return new Result<>(true, "待完善功能 code:" + wechatAgent.getWechatAccessToken(code));
-
+	public Result<String> wechatLogin(String code) throws TemplateModelException  {
+		if(StringUtils.isEmpty(code)){
+			return Result.Fail();
+		}
+		//下面的代码应该到放到service层了
+		Result<String> ret = wechatAgent.getWechatAccessToken(code);
+		if(!ret.isStatus()){
+			return Result.Fail();
+		}
+		//我们要维护一下 accessToken 不然每次登陆都会去取 accessToken 腾讯会block的
+		WxAccessTokenBean token = JsonTool.toBeanFormStr(ret.getData(), WxAccessTokenBean.class);
+		//通过openid反查用户 执行登陆
+		Result<UserModel> result = userService.checkUserOpenId(token.getOpenid());
+		if (result.isStatus()) {
+			Cookie userCook = new Cookie("user", result.getData().getUserUUID());
+			// 登录状态过期时间20分钟
+			userCook.setMaxAge(1800);
+			response.addCookie(userCook);
+			configuration.setSharedVariable("user_name", result.getData().getUserName());
+			configuration.setSharedVariable("user_avatar", result.getData().getUserAvatar());
+			return new Result<String>(true, "登录成功");
+		} else {
+			return new Result<String>(false, "登录失败");
+		}
 	}
 }
