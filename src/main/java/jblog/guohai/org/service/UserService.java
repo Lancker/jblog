@@ -1,6 +1,10 @@
 package jblog.guohai.org.service;
 
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+
 import jblog.guohai.org.model.Result;
 import jblog.guohai.org.model.UserModel;
 
@@ -34,5 +38,5 @@ public interface UserService {
      * @param openId openId
      * @return 结果
      */
-    Result<UserModel> checkUserOpenId(String openId);
+    Result<UserModel> checkUserOpenId(String openId,HttpServletResponse response);
 }
