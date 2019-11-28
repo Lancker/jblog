@@ -128,6 +128,8 @@ public class UserServiceImpl implements UserService {
 		}
 		uuidMap.put(uuid, user);
 		userMap.put(user.getUserName(), uuid);
+		logger.info("uuid"+uuid);
+		logger.info("user"+JsonTool.toStrFormBean(user));
 		return uuid;
 	}
 
