@@ -412,6 +412,7 @@ public class AdminController {
 		//通过openid反查用户 执行登陆
 		Result<UserModel> result = userService.checkUserOpenId(token.getOpenid());
 		if (result.isStatus()) {
+			logger.debug("登陆用户信息 ", result.getData());
 			Cookie userCook = new Cookie("user", result.getData().getUserUUID());
 			// 登录状态过期时间20分钟
 			userCook.setMaxAge(1800);
