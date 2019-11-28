@@ -20,6 +20,7 @@ import jblog.guohai.org.dao.UserDao;
 import jblog.guohai.org.model.OAuthModel;
 import jblog.guohai.org.model.Result;
 import jblog.guohai.org.model.UserModel;
+import jblog.guohai.org.util.JsonTool;
 import jblog.guohai.org.util.MD5;
 
 @Service
@@ -178,14 +179,14 @@ public class UserServiceImpl implements UserService {
 		result.setStatus(false);
 		// 获取用户实体
 		OAuthModel  oAuthModel = oAuthDao.getOAuthByOpenId(openId);
-		logger.debug("oAuthModel信息",oAuthModel);
+		logger.debug(String.format("oAuthModel信息 %s", JsonTool.toStrFormBean(oAuthModel)));
 		if(null==oAuthModel){
 			result.setData(null);
 			return result;
 		}
 		
 		UserModel userModel = userDao.getUserByCode(oAuthModel.getUserCode());
-		logger.debug("userModel信息",userModel);
+		logger.debug(String.format("userModel信息 %s", JsonTool.toStrFormBean(userModel)));
 		if (null == userModel) {
 			logger.info("查不到用户信息");
 			result.setData(null);
