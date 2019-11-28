@@ -396,18 +396,20 @@ public class AdminController {
 	 * @param code
 	 * @return
 	 */
+	@ResponseBody
 	@RequestMapping(value = "/wechat/login")
-	public String wechatLogin(String code) throws TemplateModelException,IOException {
+	public Result<String> wechatLogin(Model model,String code) throws TemplateModelException,IOException {
 		logger.info("微信扫码登陆 ");
 		if(StringUtils.isEmpty(code)){
 			logger.info("非法访问 ");
-			return "admin/wxlogin";
+			//return "admin/wxlogin";
+			return new Result<String>(false, "登录失败");
 		}
 		//下面的代码应该到放到service层了
 		Result<String> ret = wechatAgent.getWechatAccessToken(code);
 		if(!ret.isStatus()){
 			logger.info("第三方授权信息出错");
-			return "admin/wxlogin";
+			return new Result<String>(false, "登录失败");
 		}
 		//我们要维护一下 accessToken 不然每次登陆都会去取 accessToken 腾讯会block的
 		WxAccessTokenBean token = JsonTool.toBeanFormStr(ret.getData(), WxAccessTokenBean.class);
@@ -423,9 +425,10 @@ public class AdminController {
 			configuration.setSharedVariable("user_avatar", result.getData().getUserAvatar());
 			//PrintWriter out = response.getWriter();
 			//out.write("<script>window.location='/admin/list'</script>");
-			return "admin/wxlogin";
+			//return "admin/wxlogin";
+			return new Result<String>(true, "登录成功");
 		} else {
-			return "admin/wxlogin";
+			return new Result<String>(false, "登录失败");
 			
 		}
 	}
