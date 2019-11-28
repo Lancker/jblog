@@ -18,7 +18,10 @@ import com.alipay.util.AlipaySubmit;
 public class AlipayMApiController {
 	
 	@Autowired
-	AlipayConfig alipayConfig;
+	private AlipayConfig alipayConfig;
+	
+	@Autowired
+	private AlipaySubmit alipaySubmit;
 	
 	@RequestMapping(value = "index")
 	public String accountQuery(Model model) throws Exception {
@@ -79,8 +82,8 @@ public class AlipayMApiController {
 		// 把请求参数打包成数组
 		Map<String, String> sParaTemp = new HashMap<String, String>();
 		sParaTemp.put("service", "create_direct_pay_by_user");
-		sParaTemp.put("partner", alipayConfig.partner);
-		sParaTemp.put("seller_email", alipayConfig.seller_email);
+		sParaTemp.put("partner", alipayConfig.getPartner());
+		sParaTemp.put("seller_email", alipayConfig.getSellerEmail());
 		sParaTemp.put("_input_charset", AlipayConfig.input_charset);
 		sParaTemp.put("payment_type", payment_type);
 		sParaTemp.put("notify_url", notify_url);
@@ -96,7 +99,7 @@ public class AlipayMApiController {
 		sParaTemp.put("exter_invoke_ip", exter_invoke_ip);
 
 		// 建立请求
-		String sHtmlText = AlipaySubmit.buildRequest(sParaTemp, "get", "确认");
+		String sHtmlText = alipaySubmit.buildRequest(sParaTemp, "get", "确认");
 		model.addAttribute("page", sHtmlText);
 		return "pay/alipay/mapi/api";
 

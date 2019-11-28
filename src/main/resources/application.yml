@@ -27,6 +27,10 @@ mybatis:
 logging:
   level:
     jblog.guohai.org.dao: debug
+    jblog.guohai.org.util: debug
+    jblog.guohai.org.service: debug
+    jblog.guohai.org.web: debug
+    jblog.guohai.org.bll: debug
 my-data:
   config:
     #blog名称
@@ -70,7 +74,7 @@ alipay:
   #partner
   partner: change_to_yours
   #sellerEmail
-  sellerEmail: zhongdaiqi@gmail.com
+  sellerEmail: change_to_yours
   #mapikey
   mapiKey: change_to_yours
 pingan: 

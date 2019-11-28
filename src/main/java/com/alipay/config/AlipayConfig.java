@@ -26,29 +26,41 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AlipayConfig {
-	
-	//↓↓↓↓↓↓↓↓↓↓请在这里配置您的基本信息↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+
+	// ↓↓↓↓↓↓↓↓↓↓请在这里配置您的基本信息↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 	// 合作身份者ID，以2088开头由16位纯数字组成的字符串
 	@Value("${alipay.partner}")
-	public  String partner;
-	
+	private String partner;
+
 	// 收款支付宝账号，一般情况下收款账号就是签约账号
+
 	@Value("${alipay.sellerEmail}")
-	public  String seller_email;
+	private String sellerEmail;
 	// 商户的私钥
 	@Value("${alipay.mapiKey}")
-	public String key;
+	private String key;
 
-	//↑↑↑↑↑↑↑↑↑↑请在这里配置您的基本信息↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
-	
+	// ↑↑↑↑↑↑↑↑↑↑请在这里配置您的基本信息↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
 	// 调试用，创建TXT日志文件夹路径
 	public static String log_path = "\\data\\alipaylog";
 
 	// 字符编码格式 目前支持 gbk 或 utf-8
 	public static String input_charset = "utf-8";
-	
+
 	// 签名方式 不需修改
 	public static String sign_type = "MD5";
+	
+	public String getPartner(){
+		return partner;
+	}
+	
+	public String getSellerEmail(){
+		return sellerEmail;
+	}
+	
+	public String getKey(){
+		return key;
+	}
 
 }
