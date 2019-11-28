@@ -103,6 +103,7 @@ public class AdminController {
 			response.addCookie(userCook);
 			configuration.setSharedVariable("user_name", result.getData().getUserName());
 			configuration.setSharedVariable("user_avatar", result.getData().getUserAvatar());
+			logger.info("账密登陆成功！");
 			return new Result<String>(true, "登录成功");
 		} else {
 			return new Result<String>(false, "登录失败");

@@ -138,6 +138,7 @@ public class UserServiceImpl implements UserService {
 	 * @return
 	 */
 	public static UserModel getUserByUUID(String uuid) {
+		
 		return uuidMap.get(uuid);
 	}
 
