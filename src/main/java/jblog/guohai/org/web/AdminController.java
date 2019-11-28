@@ -397,15 +397,15 @@ public class AdminController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/wechat/login")
-	public void wechatLogin(String code,HttpServletResponse httpResponse) throws TemplateModelException,IOException {
+	public void wechatLogin(String code) throws TemplateModelException,IOException {
 		if(StringUtils.isEmpty(code)){
-			ResponseUtil.write(httpResponse, "非法访问");
+			ResponseUtil.write(response, "非法访问");
 			return ;
 		}
 		//下面的代码应该到放到service层了
 		Result<String> ret = wechatAgent.getWechatAccessToken(code);
 		if(!ret.isStatus()){
-			ResponseUtil.write(httpResponse, "登陆失败");
+			ResponseUtil.write(response, "登陆失败");
 		}
 		//我们要维护一下 accessToken 不然每次登陆都会去取 accessToken 腾讯会block的
 		WxAccessTokenBean token = JsonTool.toBeanFormStr(ret.getData(), WxAccessTokenBean.class);
@@ -418,10 +418,9 @@ public class AdminController {
 			response.addCookie(userCook);
 			configuration.setSharedVariable("user_name", result.getData().getUserName());
 			configuration.setSharedVariable("user_avatar", result.getData().getUserAvatar());
-			response.sendRedirect("/admin/list");
-			ResponseUtil.write(httpResponse, "<script>window.location='/admin/list'</script>");
+			ResponseUtil.write(response, "<script>window.location='/admin/list'</script>");
 		} else {
-			ResponseUtil.write(httpResponse, "登陆失败");
+			ResponseUtil.write(response, "登陆失败");
 		}
 	}
 }
