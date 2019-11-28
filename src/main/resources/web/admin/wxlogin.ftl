@@ -10,6 +10,6 @@
 	
 </head>
 <body>
-<script>window.location='/admin/list'</script>
+<script>window.location.href = '/admin/list'</script>
 </body>
 </html>
