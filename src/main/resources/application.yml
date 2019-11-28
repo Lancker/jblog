@@ -80,3 +80,6 @@ tencent:
   captcha:
     captchaAppId: 2046804662
     appSecretKey: 'xxxxx'
+wechat:
+  secret: change_to_yours
+  appId: change_to_yours

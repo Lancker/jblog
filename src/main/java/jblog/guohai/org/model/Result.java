@@ -1,16 +1,13 @@
 package jblog.guohai.org.model;
 
-import lombok.*;
+import lombok.Data;
 
 
+@Data
 public class Result<T> {
 
-    @Getter
-    @Setter
     private boolean status;
-
-    @Getter
-    @Setter
+    private boolean message;
     private T data;
 
     /**
@@ -23,5 +20,10 @@ public class Result<T> {
 
     public Result() {
         this.status = false;
+    }
+    
+    public static Result<String> Fail(){
+    	
+    	return new Result<>(false,null);
     }
 }

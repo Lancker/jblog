@@ -1,10 +1,10 @@
 package jblog.guohai.org.dao;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import jblog.guohai.org.model.UserModel;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+
+import jblog.guohai.org.model.UserModel;
 
 /**
  * 用户数据类

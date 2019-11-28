@@ -53,7 +53,7 @@ $(function(){
 	 id:"wx_login_container", 
 	 appid: "wxabb111e0dd2d1da9", 
 	 scope: "snsapi_login", 
-	 redirect_uri: "https://i.zuime.com/admin/wechat/login",
+	 redirect_uri: "http://i.zuime.com/admin/wechat/login",
 	 state: "",
 	 style: "",
 	 href: ""

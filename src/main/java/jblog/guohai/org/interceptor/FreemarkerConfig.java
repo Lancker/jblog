@@ -1,17 +1,15 @@
 package jblog.guohai.org.interceptor;
 
-import freemarker.template.TemplateModelException;
-import jblog.guohai.org.model.ClassType;
-import jblog.guohai.org.service.BlogService;
-import lombok.Getter;
-import lombok.Setter;
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
-import javax.annotation.PostConstruct;
-import java.util.List;
+import freemarker.template.TemplateModelException;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * 模板引擎配置类
