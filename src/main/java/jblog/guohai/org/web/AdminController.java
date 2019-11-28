@@ -99,6 +99,7 @@ public class AdminController {
 			Cookie userCook = new Cookie("user", result.getData().getUserUUID());
 			// 登录状态过期时间20分钟
 			userCook.setMaxAge(1800);
+			userCook.setPath("/");
 			response.addCookie(userCook);
 			configuration.setSharedVariable("user_name", result.getData().getUserName());
 			configuration.setSharedVariable("user_avatar", result.getData().getUserAvatar());
@@ -420,6 +421,7 @@ public class AdminController {
 			Cookie userCook = new Cookie("user", result.getData().getUserUUID());
 			// 登录状态过期时间20分钟
 			userCook.setMaxAge(1800);
+			userCook.setPath("/");
 			response.addCookie(userCook);
 			configuration.setSharedVariable("user_name", result.getData().getUserName());
 			configuration.setSharedVariable("user_avatar", result.getData().getUserAvatar());
