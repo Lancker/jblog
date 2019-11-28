@@ -38,5 +38,5 @@ public interface UserService {
      * @param openId openId
      * @return 结果
      */
-    Result<UserModel> checkUserOpenId(String openId,HttpServletResponse response);
+    Result<UserModel> checkUserOpenId(String openId,HttpServletResponse response) throws IOException ;
 }
