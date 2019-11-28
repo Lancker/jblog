@@ -400,13 +400,13 @@ public class AdminController {
 	public String wechatLogin(String code) throws TemplateModelException,IOException {
 		logger.info("微信扫码登陆 ");
 		if(StringUtils.isEmpty(code)){
-			ResponseUtil.write(response, "非法访问");
+			logger.info("非法访问 ");
 			return "admin/wxlogin";
 		}
 		//下面的代码应该到放到service层了
 		Result<String> ret = wechatAgent.getWechatAccessToken(code);
 		if(!ret.isStatus()){
-			ResponseUtil.write(response, "登陆失败");
+			logger.info("第三方授权信息出错");
 			return "admin/wxlogin";
 		}
 		//我们要维护一下 accessToken 不然每次登陆都会去取 accessToken 腾讯会block的
@@ -425,9 +425,8 @@ public class AdminController {
 			//out.write("<script>window.location='/admin/list'</script>");
 			return "admin/wxlogin";
 		} else {
-			ResponseUtil.write(response, "登陆失败");
+			return "admin/wxlogin";
 			
 		}
-		return "admin/wxlogin";
 	}
 }

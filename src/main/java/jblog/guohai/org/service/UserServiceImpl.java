@@ -53,11 +53,12 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public Result<UserModel> checkUserPass(String user, String pass) {
-
+		logger.info("检查账密登陆数据");
 		Result<UserModel> result = new Result<>();
 		result.setStatus(false);
 		// 获取用户实体
 		UserModel userModel = userDao.getUserByName(user);
+		logger.debug(String.format("userModel信息 %s", JsonTool.toStrFormBean(userModel)));
 		if (null == userModel) {
 			result.setData(null);
 			return result;
@@ -70,6 +71,7 @@ public class UserServiceImpl implements UserService {
 		userModel.setUserUUID(saveUserData(userModel));
 		result.setStatus(true);
 		result.setData(userModel);
+		logger.debug(String.format("验证成功 返回数据 %s", JsonTool.toStrFormBean(result)));
 		return result;
 	}
 
@@ -192,10 +194,10 @@ public class UserServiceImpl implements UserService {
 			result.setData(null);
 			return result;
 		}
-
 		userModel.setUserUUID(saveUserData(userModel));
 		result.setStatus(true);
 		result.setData(userModel);
+		logger.debug(String.format("验证成功 返回数据 %s", JsonTool.toStrFormBean(result)));
 		return result;
 	}
 }
