@@ -1,5 +1,6 @@
 package jblog.guohai.org.web;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
@@ -395,7 +396,7 @@ public class AdminController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/wechat/login")
-	public Result<String> wechatLogin(String code) throws TemplateModelException  {
+	public Result<String> wechatLogin(String code,HttpServletResponse response) throws TemplateModelException,IOException {
 		if(StringUtils.isEmpty(code)){
 			return Result.Fail();
 		}
@@ -415,6 +416,7 @@ public class AdminController {
 			response.addCookie(userCook);
 			configuration.setSharedVariable("user_name", result.getData().getUserName());
 			configuration.setSharedVariable("user_avatar", result.getData().getUserAvatar());
+			response.sendRedirect("/admin/list");
 			return new Result<String>(true, "登录成功");
 		} else {
 			return new Result<String>(false, "登录失败");

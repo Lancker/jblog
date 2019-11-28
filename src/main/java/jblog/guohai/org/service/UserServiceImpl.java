@@ -170,7 +170,7 @@ public class UserServiceImpl implements UserService {
 	 *            openId
 	 * @return 结果
 	 */
-	public Result<UserModel> checkUserOpenId(String openId,HttpServletResponse response) throws IOException {
+	public Result<UserModel> checkUserOpenId(String openId){
 
 		Result<UserModel> result = new Result<>();
 		result.setStatus(false);
@@ -190,7 +190,6 @@ public class UserServiceImpl implements UserService {
 		userModel.setUserUUID(saveUserData(userModel));
 		result.setStatus(true);
 		result.setData(userModel);
-		response.sendRedirect("/admin/list");
 		return result;
 	}
 }
