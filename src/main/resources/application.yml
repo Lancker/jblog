@@ -67,6 +67,12 @@ alipay:
   alipayPublicKey: xxxx
   #aesKey
   aesKey: change_to_yours
+  #partner
+  partner: change_to_yours
+  #sellerEmail
+  sellerEmail: zhongdaiqi@gmail.com
+  #mapikey
+  mapiKey: change_to_yours
 pingan: 
   serverIp: 127.0.0.1
   charset: GBK

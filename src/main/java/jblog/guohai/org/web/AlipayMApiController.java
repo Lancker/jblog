@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,10 @@ import com.alipay.util.AlipaySubmit;
 @Controller
 @RequestMapping("/pay/alipay/mapi")
 public class AlipayMApiController {
+	
+	@Autowired
+	AlipayConfig alipayConfig;
+	
 	@RequestMapping(value = "index")
 	public String accountQuery(Model model) throws Exception {
 
@@ -74,8 +79,8 @@ public class AlipayMApiController {
 		// 把请求参数打包成数组
 		Map<String, String> sParaTemp = new HashMap<String, String>();
 		sParaTemp.put("service", "create_direct_pay_by_user");
-		sParaTemp.put("partner", AlipayConfig.partner);
-		sParaTemp.put("seller_email", AlipayConfig.seller_email);
+		sParaTemp.put("partner", alipayConfig.partner);
+		sParaTemp.put("seller_email", alipayConfig.seller_email);
 		sParaTemp.put("_input_charset", AlipayConfig.input_charset);
 		sParaTemp.put("payment_type", payment_type);
 		sParaTemp.put("notify_url", notify_url);
