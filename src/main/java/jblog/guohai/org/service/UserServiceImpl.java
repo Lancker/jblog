@@ -1,5 +1,6 @@
 package jblog.guohai.org.service;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.UUID;
 import java.util.regex.Matcher;
@@ -7,6 +8,7 @@ import java.util.regex.Pattern;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -168,7 +170,7 @@ public class UserServiceImpl implements UserService {
 	 *            openId
 	 * @return 结果
 	 */
-	public Result<UserModel> checkUserOpenId(String openId) {
+	public Result<UserModel> checkUserOpenId(String openId,HttpServletResponse response) throws IOException {
 
 		Result<UserModel> result = new Result<>();
 		result.setStatus(false);
@@ -188,7 +190,7 @@ public class UserServiceImpl implements UserService {
 		userModel.setUserUUID(saveUserData(userModel));
 		result.setStatus(true);
 		result.setData(userModel);
+		response.sendRedirect("/admin/list");
 		return result;
 	}
-
 }
