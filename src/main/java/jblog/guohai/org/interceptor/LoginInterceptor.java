@@ -1,23 +1,29 @@
 package jblog.guohai.org.interceptor;
 
-import jblog.guohai.org.model.UserModel;
-import jblog.guohai.org.service.UserServiceImpl;
-import jblog.guohai.org.util.JsonTool;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.HandlerInterceptor;
+import java.io.IOException;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.HandlerInterceptor;
+
+import jblog.guohai.org.model.UserModel;
+import jblog.guohai.org.service.UserService;
+import jblog.guohai.org.service.UserServiceImpl;
+import jblog.guohai.org.util.JsonTool;
 
 @Configuration
 public class LoginInterceptor implements HandlerInterceptor {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
+	@Autowired
+	UserService userService;
+	
     @Override
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws IOException {
@@ -43,6 +49,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         UserModel user = UserServiceImpl.getUserByUUID(uuid);
         logger.info("获取user："+JsonTool.toStrFormBean(user));
         if (null == user) {
+        	userService.logoutUser(uuid);
             response.sendRedirect("/admin/");
             return false;
         }
