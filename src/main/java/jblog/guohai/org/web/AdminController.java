@@ -1,6 +1,7 @@
 package jblog.guohai.org.web;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.util.List;
 
@@ -398,6 +399,7 @@ public class AdminController {
 	@ResponseBody
 	@RequestMapping(value = "/wechat/login")
 	public void wechatLogin(String code) throws TemplateModelException,IOException {
+		logger.info("微信扫码登陆 ");
 		if(StringUtils.isEmpty(code)){
 			ResponseUtil.write(response, "非法访问");
 			return ;
@@ -419,7 +421,8 @@ public class AdminController {
 			response.addCookie(userCook);
 			configuration.setSharedVariable("user_name", result.getData().getUserName());
 			configuration.setSharedVariable("user_avatar", result.getData().getUserAvatar());
-			ResponseUtil.write(response, "<script>window.location='/admin/list'</script>");
+			PrintWriter out = response.getWriter();
+			out.write("<script>window.location='/admin/list'</script>");
 		} else {
 			ResponseUtil.write(response, "登陆失败");
 		}
