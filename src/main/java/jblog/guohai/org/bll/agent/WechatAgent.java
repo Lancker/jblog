@@ -11,7 +11,7 @@ public class WechatAgent {
 
 	private static String ACCESS_TOKEN_URL_TPL = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=%s&secret=%s&code=%s&grant_type=authorization_code";
 	@Value("${wechat.appId}")
-	private static String appId;
+	private String appId;
 	@Value("${wechat.secret}")
 	private String secret;
 
