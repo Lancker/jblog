@@ -10,6 +10,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +24,7 @@ import jblog.guohai.org.util.MD5;
 
 @Service
 public class UserServiceImpl implements UserService {
-
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	UserDao userDao;
 	
@@ -171,18 +173,21 @@ public class UserServiceImpl implements UserService {
 	 * @return 结果
 	 */
 	public Result<UserModel> checkUserOpenId(String openId){
-
+		logger.info("检查DB中的登陆数据");
 		Result<UserModel> result = new Result<>();
 		result.setStatus(false);
 		// 获取用户实体
-		OAuthModel  oAuthModel = oAuthDao.getUserCodeByOpenId(openId);
+		OAuthModel  oAuthModel = oAuthDao.getOAuthByOpenId(openId);
+		logger.debug("oAuthModel信息",oAuthModel);
 		if(null==oAuthModel){
 			result.setData(null);
 			return result;
 		}
 		
 		UserModel userModel = userDao.getUserByCode(oAuthModel.getUserCode());
+		logger.debug("userModel信息",userModel);
 		if (null == userModel) {
+			logger.info("查不到用户信息");
 			result.setData(null);
 			return result;
 		}

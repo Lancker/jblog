@@ -17,5 +17,5 @@ public interface OAuthDao {
      * @return oauth实体
      */
     @Select("SELECT * FROM jblog_oauth WHERE oauth_openid=#{openid};")
-    OAuthModel getUserCodeByOpenId(@Param("openid") String openId);
+    OAuthModel getOAuthByOpenId(@Param("openid") String openId);
 }
