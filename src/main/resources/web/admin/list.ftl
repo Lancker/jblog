@@ -70,7 +70,7 @@
 <#include "/inc/foot.ftl"/>
                     <script type="text/javascript">
                      <#list listContent as content>
-                            new QRCode(document.getElementById("qrcode_${listContent.postCode}"), "${listContent.postQrcode}");
+                            new QRCode(document.getElementById("qrcode_${content.postCode}"), "${content.postQrcode}");
                      </#list>
 
                </script>
