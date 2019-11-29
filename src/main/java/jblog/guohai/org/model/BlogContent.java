@@ -76,6 +76,13 @@ public class BlogContent {
     @Getter
     @Setter
     private Integer classCode;
+    
+    /**
+     * 二维码（不用id太好猜了）
+     */
+    @Getter
+    @Setter
+    private String postQrcode;
 
     /**
      * 构造方法

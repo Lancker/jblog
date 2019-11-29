@@ -1,5 +1,11 @@
 package jblog.guohai.org.service;
 
+import java.util.List;
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import jblog.guohai.org.dao.BlogDao;
 import jblog.guohai.org.dao.HotkeyDao;
 import jblog.guohai.org.dao.UserDao;
@@ -8,10 +14,6 @@ import jblog.guohai.org.model.Hotkey;
 import jblog.guohai.org.model.Result;
 import jblog.guohai.org.model.UserModel;
 import jblog.guohai.org.util.MD5;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -146,6 +148,8 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Result<String> addPostBlog(BlogContent blog) {
         Result<String> result = new Result<>();
+        String uuid = String.valueOf(UUID.randomUUID());
+        blog.setPostQrcode(uuid);
         blogDao.addPostBlog(blog);
         if (blog.getPostCode() > 0) {
             //做关键字加1操作
