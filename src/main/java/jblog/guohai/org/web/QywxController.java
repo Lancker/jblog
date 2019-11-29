@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import jblog.guohai.org.bll.agent.QywxAgent;
+import jblog.guohai.org.model.QywxAccessTokenBean;
 import jblog.guohai.org.model.Result;
 import jblog.guohai.org.util.JsonTool;
 
@@ -35,6 +36,10 @@ public class QywxController {
 			logger.info("企业微信授权信息出错");
 			return "qywx/check:"+JsonTool.toStrFormBean(ret);
 		}
-		return "qywx/check:" + JsonTool.toStrFormBean(ret);
+		//我们要维护一下 accessToken 不然每次登陆都会去取 accessToken 腾讯会block的
+		QywxAccessTokenBean token = JsonTool.toBeanFormStr(ret.getData(), QywxAccessTokenBean.class);
+		logger.info("企业微信授权AccessToken:%s"+JsonTool.toStrFormBean(token));
+		
+		return "qywx/check:" + token.getAccess_token();
 	}
 }
