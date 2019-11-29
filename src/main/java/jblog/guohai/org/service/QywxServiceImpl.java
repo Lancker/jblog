@@ -51,7 +51,7 @@ public class QywxServiceImpl  implements QywxService {
 			logger.info("保存扫码流水失败");
 			Result.Fail();
 		}
-		return new Result<>(true,null);
+		return new Result<>(true,scanModel.getScanDepartment());
 	}
 
 	private String getDepartment(QywxDepartmentDto[] departmentList,String[] myDepartment){

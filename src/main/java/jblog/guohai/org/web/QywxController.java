@@ -124,6 +124,7 @@ public class QywxController {
 		model.addAttribute("message","恭喜扫码成功！");
 		model.addAttribute("userPos",userPos);
 		model.addAttribute("blog",blogContent);
+		model.addAttribute("dept",scanRet.getData());
 		return "qywx/check";
 	}
 }

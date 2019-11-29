@@ -27,15 +27,11 @@
                                     <a href="/${blog.postYear?c}//${blog.postDay}/${blog.postSmallTitle}/">${blog.postTitle}</a>
                                 </h1>
 
-                                <h1> ${userPos.name} </h1>
+                                <p></p>
+                                <h1> ${userPos.name} - ${dept}</h1>
 
                            </#if>
-
-
-
-
                         <footer>
-
                         </footer>
             </article>
 
