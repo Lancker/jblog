@@ -1,5 +1,9 @@
 package jblog.guohai.org.web;
 
+import jblog.guohai.org.bll.agent.QywxAgent;
+import jblog.guohai.org.model.*;
+import jblog.guohai.org.service.QywxService;
+import jblog.guohai.org.util.JsonTool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,14 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import jblog.guohai.org.bll.agent.QywxAgent;
-import jblog.guohai.org.model.QywxAccessTokenDto;
-import jblog.guohai.org.model.QywxUserInfoDto;
-import jblog.guohai.org.model.QywxUserPosDto;
-import jblog.guohai.org.model.Result;
-import jblog.guohai.org.service.QywxService;
-import jblog.guohai.org.util.JsonTool;
 
 @Controller
 @RequestMapping("/qywx")
@@ -81,7 +77,6 @@ public class QywxController {
 			logger.info("用户职位信息为null");
 			return "qywx/check:用户职位信息为空";
 		}
-
 		//获取全量组织架构信息
 		Result<String> fullDeptRet = qywxAgent.getFullDept(token.getAccess_token());
 		if(!fullDeptRet.isStatus()){
@@ -89,7 +84,12 @@ public class QywxController {
 			return "qywx/check:获取组织架构信息失败";
 		}
 		logger.info("组织架构信息：%s"+JsonTool.toStrFormBean(fullDeptRet.getData()));
-
+		QywxDepartmentResponse qywxDepartmentResponse = JsonTool.toBeanFormStr(fullDeptRet.getData(), QywxDepartmentResponse.class);
+		if(null==qywxDepartmentResponse){
+			logger.info("获取组织架构信息为空");
+			return "qywx/check:获取组织架构信息为空";
+		}
+		logger.info("组织架构信息:"+JsonTool.toStrFormBean(qywxDepartmentResponse.getDepartment()));
 		//获取物品信息
 		Result<String> scanRet = qywxService.saveScan(userPos, uuid);
 		if(!scanRet.isStatus()){
