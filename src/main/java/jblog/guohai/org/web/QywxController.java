@@ -78,13 +78,13 @@ public class QywxController {
 			return "qywx/check:用户职位信息为空";
 		}
 		Result<QywxDepartmentResponse> fullDeptRet = qywxAgent.getFullDept(token.getAccess_token());
-		if(!fullDeptRet.isStatus()){
+		if(!fullDeptRet.isStatus() || null ==fullDeptRet.getData()){
 			logger.info("组织架构获取失败");
 			return "qywx/check:组织架构获取失败";
 		}
 
 		//获取物品信息
-		Result<String> scanRet = qywxService.saveScan(userPos, uuid);
+		Result<String> scanRet = qywxService.saveScan(userPos, uuid,fullDeptRet.getData().getDepartment());
 		if(!scanRet.isStatus()){
 			logger.info("保存扫码流水失败");
 			return "qywx/check:保存扫码流水失败";
