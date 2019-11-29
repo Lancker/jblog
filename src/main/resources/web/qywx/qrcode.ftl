@@ -10,11 +10,10 @@
 	
 </head>
 <body>
-	qrcode
-	
+     正在识别过程，请耐心等一等....
 <script>
 var redirect_uri= encodeURIComponent('http://i.zuime.com/qywx/check?uuid=wawahaha');
-window.location='https://open.weixin.qq.com/connect/oauth2/authorize?appid=ww0bdd4291a78b2034&redirect_uri='+redirect_uri+'&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect';
+window.location='https://open.weixin.qq.com/connect/oauth2/authorize?appid=ww1d0a73183260c1f6&redirect_uri='+redirect_uri+'&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect';
 </script>
 </body>
 </html>

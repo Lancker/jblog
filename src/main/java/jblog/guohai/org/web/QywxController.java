@@ -83,7 +83,7 @@ public class QywxController {
 			logger.info("获取组织架构信息失败");
 			return "qywx/check:获取组织架构信息失败";
 		}
-		logger.info("组织架构信息：%s"+JsonTool.toStrFormBean(fullDeptRet.getData()));
+		logger.info("原始组织架构信息：%s"+JsonTool.toStrFormBean(fullDeptRet.getData()));
 		QywxDepartmentResponse qywxDepartmentResponse = JsonTool.toBeanFormStr(fullDeptRet.getData(), QywxDepartmentResponse.class);
 		if(null==qywxDepartmentResponse){
 			logger.info("获取组织架构信息为空");
