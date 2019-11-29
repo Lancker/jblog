@@ -25,7 +25,12 @@
                                 <thead><tr><th>标题</th><th>分类</th><th>时间</th><th>操作</th></tr></thead>
                                 <tbody>
                                     <#list listContent as content>
-                                    <tr><td><#if content.postTitle?length gt 21>${content.postTitle?substring(0,20)}...<#else>${content.postTitle}</#if></td>
+                                    <tr>
+                                    <td>
+                                            <#if content.postTitle?length gt 21>${content.postTitle?substring(0,20)}...<#else>${content.postTitle}</#if>
+                                    <p>二维码连接:http://i.zuime.com/qywx/qrcode?qrcode=${content.postQrcode}</p>
+
+                                    </td>
                                     <td><select class="classify-type">
                                         <#if content.classCode == 0><option value="0" selected>文章归类...</option></#if>
                                         <#list classTypeList as classItem>
