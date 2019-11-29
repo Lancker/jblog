@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import jblog.guohai.org.bll.agent.QywxAgent;
 import jblog.guohai.org.model.QywxAccessTokenDto;
 import jblog.guohai.org.model.QywxUserInfoDto;
+import jblog.guohai.org.model.QywxUserPosDto;
 import jblog.guohai.org.model.Result;
 import jblog.guohai.org.util.JsonTool;
 
@@ -47,6 +48,11 @@ public class QywxController {
 			return "qywx/check:token为空";
 		}
 		Result<String> userInfoRet = qywxAgent.getUserInfo(token.getAccess_token(), code);
+		if(!userInfoRet.isStatus()){
+			logger.info("用户信息获取失败");
+			return "qywx/check:"+JsonTool.toStrFormBean(userInfoRet);
+		}
+		
 		QywxUserInfoDto userInfo = JsonTool.toBeanFormStr(userInfoRet.getData(), QywxUserInfoDto.class);
 		logger.info("用户信息:%s"+JsonTool.toStrFormBean(userInfo));
 		if(null==userInfo){
@@ -58,7 +64,16 @@ public class QywxController {
 			return "qywx/check:用户id为空";
 		}
 		Result<String> userPosRet = qywxAgent.getUserPos(token.getAccess_token(), userInfo.getUserId());
+		if(!userPosRet.isStatus()){
+			logger.info("职位信息获取失败");
+			return "qywx/check:职位信息获取失败";
+		}
 		logger.info("用户职位信息："+JsonTool.toStrFormBean(userPosRet));
-		return "qywx/check:" + token.getAccess_token();
+		QywxUserPosDto userPos = JsonTool.toBeanFormStr(userPosRet.getData(), QywxUserPosDto.class);
+		if(null==userPos){
+			logger.info("用户职位信息为null");
+			return "qywx/check:用户职位信息为空";
+		}
+		return "qywx/check:" + JsonTool.toStrFormBean(userPos);
 	}
 }
