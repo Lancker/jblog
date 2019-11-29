@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -52,6 +53,12 @@ public class QywxController {
 			logger.info("用户信息为null");
 			return "qywx/check:用户信息为空";
 		}
+		if(StringUtils.isEmpty(userInfo.getUserId()) ){
+			logger.info("用户id为null");
+			return "qywx/check:用户id为空";
+		}
+		Result<String> userPosRet = qywxAgent.getUserPos(token.getAccess_token(), userInfo.getUserId());
+		logger.info("用户职位信息："+JsonTool.toStrFormBean(userPosRet));
 		return "qywx/check:" + token.getAccess_token();
 	}
 }
