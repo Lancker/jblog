@@ -34,6 +34,7 @@ public class QywxServiceImpl  implements QywxService {
 			logger.info("扫码物品不存在");
 			Result.Fail();
 		}
+		logger.info(String.format("物品信息:%s", JsonTool.toStrFormBean(blog)));
 		ScanModel scanModel = new ScanModel();
 		scanModel.setScanUserId(userPos.getUserid());
 		scanModel.setScanName(userPos.getName());
@@ -45,6 +46,8 @@ public class QywxServiceImpl  implements QywxService {
 		//填充一下物品信息（即博客信息）
 		scanModel.setScanQrcode(blog.getPostQrcode());
 		scanModel.setScanQrcodeTitle(blog.getPostTitle());
+		//记录扫码时间
+		scanModel.setScanDate(new Date());
 		if(!scanDao.addScan(scanModel)){
 			logger.info("保存扫码流水失败");
 			Result.Fail();
