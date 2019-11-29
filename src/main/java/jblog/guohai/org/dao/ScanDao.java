@@ -28,7 +28,7 @@ public interface ScanDao {
             "`scan_qrcode_title`)\n" +
             "VALUES\n" +
             "(#{scan.scanDate},\n" +
-            "#{scan.scanUserid},\n" +
+            "#{scan.scanUserId},\n" +
             "#{scan.scanName},\n" +
             "#{scan.scanMobile},\n" +
             "#{scan.scanDepartment},\n" +
