@@ -14,7 +14,7 @@ public class QywxUserPosDto {
 	private String userid;
 	private String name;
 	private String mobile;
-	private String department;
+	private String[] department;
 	private String position;
 	private String email;
 	private String avatar;
