@@ -1,19 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-	<title>${blog_name}</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/css/jblog.css">
-	<link rel="stylesheet" type="text/css" href="/css/jquery-confirm.min.css"/>
-	
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>${blog_name}</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+
 </head>
-<body>
-	qrcode
-	
-<script>
-window.location='https://open.weixin.qq.com/connect/oauth2/authorize?appid=ww0bdd4291a78b2034&redirect_uri=http://i.zuime.com/qywx/check&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect';
-</script>
+<body class="home blog group-blog">
+<div id="main">
+
+    <div id="content">
+        <div>
+            <article role="article">
+
+                               <#if !success>
+                                        <h1>${message}</h1>
+
+                                </#if>
+                        <#if success>
+                                 <h1>${message}</h1>
+
+                                <h1 class="entry-title">
+                                    <a href="/${blog.postYear?c}//${blog.postDay}/${blog.postSmallTitle}/">${blog.postTitle}</a>
+                                </h1>
+
+                                <h1> ${userPos.name} </h1>
+
+                           </#if>
+
+
+
+
+                        <footer>
+
+                        </footer>
+            </article>
+
+        </div>
+
+</div>
+
+
+
+<footer class="blog-footer" role="contentinfo"><p>
+    © 2019 power by Jblog
+
+
+</p>
+
+</footer>
 </body>
 </html>
