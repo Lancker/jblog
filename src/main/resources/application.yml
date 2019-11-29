@@ -93,3 +93,6 @@ tencent:
 wechat:
   secret: change_to_yours
   appId: change_to_yours
+qywx:
+  corpid: change_to_yours
+  corpsecret: change_to_yours
