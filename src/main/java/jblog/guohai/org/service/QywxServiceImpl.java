@@ -11,7 +11,9 @@ import jblog.guohai.org.model.QywxUserPosDto;
 import jblog.guohai.org.model.Result;
 import jblog.guohai.org.model.ScanModel;
 import jblog.guohai.org.util.JsonTool;
+import org.springframework.stereotype.Service;
 
+@Service
 public class QywxServiceImpl  implements QywxService {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	

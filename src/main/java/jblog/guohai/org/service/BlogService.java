@@ -16,6 +16,13 @@ public interface BlogService {
     BlogContent getByID(Integer code);
 
     /**
+     * 通过二维码获取文章
+     * @param qrcode
+     * @return
+     */
+    BlogContent getByQrcode(String qrcode);
+
+    /**
      * 获得指定日期BLOG
      * @param sDate
      * @param smallTitle
