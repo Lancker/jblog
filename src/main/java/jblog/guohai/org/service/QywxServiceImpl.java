@@ -55,4 +55,6 @@ public class QywxServiceImpl  implements QywxService {
 		}
 		return new Result<>(true,null);
 	}
+
+
 }

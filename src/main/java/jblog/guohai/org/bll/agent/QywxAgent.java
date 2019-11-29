@@ -12,6 +12,8 @@ public class QywxAgent {
 	private static String ACCESS_TOKEN_URL_TPL="https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=%s&corpsecret=%s";
 	private static String GET_USER_INFO_TPL="https://qyapi.weixin.qq.com/cgi-bin/user/getuserinfo?access_token=%s&code=%s";
 	private static String GET_USER_POS_TPL="https://qyapi.weixin.qq.com/cgi-bin/user/get?access_token=%s&userid=%s";
+
+	private static String GET_DEPARTMENT_TPL="https://qyapi.weixin.qq.com/cgi-bin/department/list?access_token=%s";
 	
 	@Value("${qywx.corpid}")
 	private String corpid;
@@ -20,8 +22,6 @@ public class QywxAgent {
 
 	/**
 	 * 获取AccessToken
-	 * 
-	 * @param code
 	 * @return
 	 */
 	public Result<String> getAccessToken() {
@@ -48,5 +48,15 @@ public class QywxAgent {
 		String apiUrl = String.format(GET_USER_POS_TPL, token, userId);
 		return HttpUtil.get(apiUrl, null);
 	}
-	
+
+	/**
+	 * 获取全量组织架构信息
+	 * @param token
+	 * @param userId
+	 * @return
+	 */
+	public Result<String> getFullDept(String token) {
+		String apiUrl = String.format(GET_DEPARTMENT_TPL, token);
+		return HttpUtil.get(apiUrl, null);
+	}
 }
