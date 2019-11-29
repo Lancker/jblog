@@ -88,6 +88,7 @@ public class QywxController {
 			logger.info("保存扫码流水失败");
 			return "qywx/check:保存扫码流水失败";
 		}
+		logger.info("保存扫码流水成功");
 		return "qywx/check:" + JsonTool.toStrFormBean(userPos);
 	}
 }

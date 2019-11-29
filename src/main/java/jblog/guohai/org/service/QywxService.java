@@ -11,5 +11,5 @@ public interface QywxService {
 	 * @param uuid
 	 * @return
 	 */
-	Result<String> saveScan(QywxUserPosDto userPos,String uuid);
+	Result<String> saveScan(QywxUserPosDto userPos,String qrcode);
 }
