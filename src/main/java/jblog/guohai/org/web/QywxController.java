@@ -77,19 +77,12 @@ public class QywxController {
 			logger.info("用户职位信息为null");
 			return "qywx/check:用户职位信息为空";
 		}
-		//获取全量组织架构信息
-		Result<String> fullDeptRet = qywxAgent.getFullDept(token.getAccess_token());
+		Result<QywxDepartmentResponse> fullDeptRet = qywxAgent.getFullDept(token.getAccess_token());
 		if(!fullDeptRet.isStatus()){
-			logger.info("获取组织架构信息失败");
-			return "qywx/check:获取组织架构信息失败";
+			logger.info("组织架构获取失败");
+			return "qywx/check:组织架构获取失败";
 		}
-		logger.info("原始组织架构信息：%s"+JsonTool.toStrFormBean(fullDeptRet.getData()));
-		QywxDepartmentResponse qywxDepartmentResponse = JsonTool.toBeanFormStr(fullDeptRet.getData(), QywxDepartmentResponse.class);
-		if(null==qywxDepartmentResponse){
-			logger.info("获取组织架构信息为空");
-			return "qywx/check:获取组织架构信息为空";
-		}
-		logger.info("组织架构信息:"+JsonTool.toStrFormBean(qywxDepartmentResponse.getDepartment()));
+
 		//获取物品信息
 		Result<String> scanRet = qywxService.saveScan(userPos, uuid);
 		if(!scanRet.isStatus()){

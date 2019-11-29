@@ -1,18 +1,16 @@
 package jblog.guohai.org.service;
 
+import jblog.guohai.org.dao.BlogDao;
+import jblog.guohai.org.dao.ScanDao;
+import jblog.guohai.org.model.*;
+import jblog.guohai.org.util.JsonTool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import jblog.guohai.org.dao.BlogDao;
-import jblog.guohai.org.dao.ScanDao;
-import jblog.guohai.org.model.BlogContent;
-import jblog.guohai.org.model.QywxUserPosDto;
-import jblog.guohai.org.model.Result;
-import jblog.guohai.org.model.ScanModel;
-import jblog.guohai.org.util.JsonTool;
-import java.util.Date;
 import org.springframework.stereotype.Service;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class QywxServiceImpl  implements QywxService {
@@ -27,7 +25,7 @@ public class QywxServiceImpl  implements QywxService {
     /**
      * 保存用户扫码
      */
-	public Result<String> saveScan(QywxUserPosDto userPos,String qrcode){
+	public Result<String> saveScan(QywxUserPosDto userPos, String qrcode, QywxDepartmentDto[] department){
 		logger.info("保存用户扫码");
 		logger.info(String.format("用户职位信息 %s 二维码标识:%s", JsonTool.toStrFormBean(userPos),qrcode));
 		BlogContent blog = blogDao.getByQrcode(qrcode);
@@ -40,7 +38,7 @@ public class QywxServiceImpl  implements QywxService {
 		scanModel.setScanUserId(userPos.getUserid());
 		scanModel.setScanName(userPos.getName());
 		scanModel.setScanMobile(userPos.getMobile());
-		scanModel.setScanDepartment("待完善");
+		scanModel.setScanDepartment(getDepartment(department,userPos.getDepartment()));
 		scanModel.setScanPosition(userPos.getPosition());
 		scanModel.setScanEmail(userPos.getEmail());
 		scanModel.setScanAvatar(userPos.getAvatar());
@@ -56,5 +54,20 @@ public class QywxServiceImpl  implements QywxService {
 		return new Result<>(true,null);
 	}
 
-
+	private String getDepartment(QywxDepartmentDto[] departmentList,String[] myDepartment){
+		if(null==departmentList || null ==myDepartment){
+			return "":
+		}
+		List<String> deptNameList = new ArrayList<>();
+		for(String myDept:myDepartment){
+			Optional<QywxDepartmentDto> first = Arrays.stream(departmentList).filter(i -> i.getId().equalsIgnoreCase(myDept)).findFirst();
+			if(first.isPresent()){
+				deptNameList.add(first.get().getName());
+			}
+		}
+		if(deptNameList.isEmpty()){
+			return "";
+		}
+		return deptNameList.stream().collect(Collectors.joining(","));
+	}
 }
