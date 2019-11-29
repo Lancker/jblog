@@ -19,7 +19,6 @@ public interface ScanDao {
             "`scan_userid`,\n" +
             "`scan_name`,\n" +
             "`scan_mobile`,\n" +
-            "`scan_mobile`,\n" +
             "`scan_department`,\n" +
             "`scan_position`,\n" +
             "`scan_email`,\n" +
