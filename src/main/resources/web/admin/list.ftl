@@ -71,7 +71,7 @@
                     <script type="text/javascript">
                      <#list listContent as content>
                             new QRCode(document.getElementById("qrcode_${listContent.postCode}"), "${listContent.postQrcode}");
-                     <#list>
+                     </#list>
 
                </script>
 </body>
