@@ -56,7 +56,7 @@ public class QywxServiceImpl  implements QywxService {
 
 	private String getDepartment(QywxDepartmentDto[] departmentList,String[] myDepartment){
 		if(null==departmentList || null ==myDepartment){
-			return "":
+			return "";
 		}
 		List<String> deptNameList = new ArrayList<>();
 		for(String myDept:myDepartment){
