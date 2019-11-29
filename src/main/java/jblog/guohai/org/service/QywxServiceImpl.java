@@ -11,6 +11,7 @@ import jblog.guohai.org.model.QywxUserPosDto;
 import jblog.guohai.org.model.Result;
 import jblog.guohai.org.model.ScanModel;
 import jblog.guohai.org.util.JsonTool;
+import java.util.Date;
 import org.springframework.stereotype.Service;
 
 @Service
