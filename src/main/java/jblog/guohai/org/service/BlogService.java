@@ -4,6 +4,7 @@ import jblog.guohai.org.model.BlogContent;
 import jblog.guohai.org.model.ClassType;
 import jblog.guohai.org.model.Hotkey;
 import jblog.guohai.org.model.Result;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 

@@ -37,7 +37,7 @@ public class BlogServiceImpl implements BlogService {
     public BlogContent getByID(Integer code) {
         return blogDao.getContentById(code);
     }
-    
+
     /**
      * 获得指定qrcode
      *
