@@ -8,7 +8,7 @@ import lombok.Data;
  *
  */
 @Data
-public class QywxAccessTokenBean {
+public class QywxAccessTokenDto {
 	private String errcode;
 	private String errmsg;
 	private String access_token;

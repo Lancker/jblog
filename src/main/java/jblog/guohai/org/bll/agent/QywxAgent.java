@@ -10,7 +10,7 @@ import jblog.guohai.org.util.HttpUtil;
 public class QywxAgent {
 
 	private static String ACCESS_TOKEN_URL_TPL="https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=%s&corpsecret=%s";
-	
+	private static String GET_USER_INFO_TPL="https://qyapi.weixin.qq.com/cgi-bin/user/getuserinfo?access_token=%s&code=%s";
 	
 	@Value("${qywx.corpid}")
 	private String corpid;
@@ -27,6 +27,12 @@ public class QywxAgent {
 		// 需要控制授权时长，频繁取会出问题
 		String accessTokenUrl = String.format(ACCESS_TOKEN_URL_TPL, corpid, corpsecret);
 		return HttpUtil.get(accessTokenUrl, null);
+	}
+	
+	public Result<String> getUserInfo(String token,String code) {
+		// 需要控制授权时长，频繁取会出问题
+		String apiUrl = String.format(GET_USER_INFO_TPL, token, code);
+		return HttpUtil.get(apiUrl, null);
 	}
 	
 }

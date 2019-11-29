@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import jblog.guohai.org.bll.agent.QywxAgent;
-import jblog.guohai.org.model.QywxAccessTokenBean;
+import jblog.guohai.org.model.QywxAccessTokenDto;
+import jblog.guohai.org.model.QywxUserInfoDto;
 import jblog.guohai.org.model.Result;
 import jblog.guohai.org.util.JsonTool;
 
@@ -37,9 +38,20 @@ public class QywxController {
 			return "qywx/check:"+JsonTool.toStrFormBean(ret);
 		}
 		//我们要维护一下 accessToken 不然每次登陆都会去取 accessToken 腾讯会block的
-		QywxAccessTokenBean token = JsonTool.toBeanFormStr(ret.getData(), QywxAccessTokenBean.class);
-		logger.info("企业微信授权AccessToken:%s"+JsonTool.toStrFormBean(token));
 		
+		QywxAccessTokenDto token = JsonTool.toBeanFormStr(ret.getData(), QywxAccessTokenDto.class);
+		logger.info("企业微信授权AccessToken:%s"+JsonTool.toStrFormBean(token));
+		if(null==token){
+			logger.info("企业微信授权Token为null");
+			return "qywx/check:token为空";
+		}
+		Result<String> userInfoRet = qywxAgent.getUserInfo(token.getAccess_token(), code);
+		QywxUserInfoDto userInfo = JsonTool.toBeanFormStr(userInfoRet.getData(), QywxUserInfoDto.class);
+		logger.info("用户信息:%s"+JsonTool.toStrFormBean(userInfo));
+		if(null==userInfo){
+			logger.info("用户信息为null");
+			return "qywx/check:用户信息为空";
+		}
 		return "qywx/check:" + token.getAccess_token();
 	}
 }
