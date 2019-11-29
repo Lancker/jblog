@@ -13,4 +13,11 @@ public class QywxController {
 	public String pay(Model model) throws Exception {
 		return "qywx/qrcode";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/check")
+	public String check(Model model,String code){
+		
+		return "qywx/check:"+code;
+	}
 }
