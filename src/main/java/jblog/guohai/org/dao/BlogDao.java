@@ -13,6 +13,9 @@ public interface BlogDao {
 
     @Select("SELECT * FROM  jblog_posts WHERE post_code=#{postCode}")
     BlogContent getContentById(@Param("postCode") Integer postCode);
+    
+    @Select("SELECT * FROM  jblog_posts WHERE post_qrcode=#{postQrcode}")
+    BlogContent getByQrcode(@Param("postQrcode") String postQrcode);
 
     /**
      * 活的指定日期指定标题的BLOG

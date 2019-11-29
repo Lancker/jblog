@@ -14,6 +14,7 @@ import jblog.guohai.org.model.QywxAccessTokenDto;
 import jblog.guohai.org.model.QywxUserInfoDto;
 import jblog.guohai.org.model.QywxUserPosDto;
 import jblog.guohai.org.model.Result;
+import jblog.guohai.org.service.QywxService;
 import jblog.guohai.org.util.JsonTool;
 
 @Controller
@@ -23,6 +24,9 @@ public class QywxController {
 	
 	@Autowired
 	QywxAgent qywxAgent;
+	
+	@Autowired
+	QywxService qywxService;
 
 	@RequestMapping(value = "qrcode")
 	public String pay(Model model) throws Exception {
@@ -31,8 +35,12 @@ public class QywxController {
 
 	@ResponseBody
 	@RequestMapping(value = "/check")
-	public String check(Model model, String code,String state) {
-		logger.info(String.format("企业微信登陆参数 code: %s state:%s", code,state));
+	public String check(Model model, String code,String state,String uuid) {
+		logger.info(String.format("企业微信登陆参数 code: %s state:%s uuid:%s", code,state,uuid));
+		if(StringUtils.isEmpty(uuid)){
+			logger.info("物品uuid为空");
+			return "qywx/check:物品uuid为空";
+		}
 		
 		Result<String> ret = qywxAgent.getAccessToken();
 		if(!ret.isStatus()){
@@ -40,7 +48,6 @@ public class QywxController {
 			return "qywx/check:"+JsonTool.toStrFormBean(ret);
 		}
 		//我们要维护一下 accessToken 不然每次登陆都会去取 accessToken 腾讯会block的
-		
 		QywxAccessTokenDto token = JsonTool.toBeanFormStr(ret.getData(), QywxAccessTokenDto.class);
 		logger.info("企业微信授权AccessToken:%s"+JsonTool.toStrFormBean(token));
 		if(null==token){
@@ -73,6 +80,13 @@ public class QywxController {
 		if(null==userPos){
 			logger.info("用户职位信息为null");
 			return "qywx/check:用户职位信息为空";
+		}
+		
+		//获取物品信息
+		Result<String> scanRet = qywxService.saveScan(userPos, uuid);
+		if(!scanRet.isStatus()){
+			logger.info("保存扫码流水失败");
+			return "qywx/check:保存扫码流水失败";
 		}
 		return "qywx/check:" + JsonTool.toStrFormBean(userPos);
 	}
