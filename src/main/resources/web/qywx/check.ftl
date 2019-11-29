@@ -29,6 +29,7 @@
 
                                 <p></p>
                                 <h1> ${userPos.name} - ${dept}</h1>
+                                <img src="${userPos.avatar}"/>
 
                            </#if>
                         <footer>
