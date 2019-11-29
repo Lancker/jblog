@@ -29,7 +29,8 @@ public class QywxController {
 	BlogService blogService;
 
 	@RequestMapping(value = "qrcode")
-	public String pay(Model model) throws Exception {
+	public String pay(Model model,String qrcode) throws Exception {
+		model.addAttribute("qrcode", qrcode);
 		return "qywx/qrcode";
 	}
 
