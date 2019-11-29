@@ -70,7 +70,7 @@
 <#include "/inc/foot.ftl"/>
                     <script type="text/javascript">
                      <#list listContent as content>
-                            new QRCode(document.getElementById("qrcode_${content.postCode}"), "${content.postQrcode}");
+                            new QRCode(document.getElementById("qrcode_${content.postCode}"), "http://i.zuime.com/qywx/qrcode?qrcode=${content.postQrcode}");
                      </#list>
 
                </script>
