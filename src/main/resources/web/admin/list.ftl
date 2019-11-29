@@ -2,6 +2,7 @@
 <html>
 <head>
     <#include "/inc/admin-head.ftl" />
+    <script src="/js/qrcode.min.js"></script>
 </head>
 <body>
     <section class="main-section">
@@ -29,6 +30,10 @@
                                     <td>
                                             <#if content.postTitle?length gt 21>${content.postTitle?substring(0,20)}...<#else>${content.postTitle}</#if>
                                     <p>二维码连接:http://i.zuime.com/qywx/qrcode?qrcode=${content.postQrcode}</p>
+                                    <div id="qrcode_${content.postCode}"></div>
+
+
+
 
                                     </td>
                                     <td><select class="classify-type">
@@ -63,6 +68,11 @@
 
 
 <#include "/inc/foot.ftl"/>
+                    <script type="text/javascript">
+                     <#list listContent as content>
+                            new QRCode(document.getElementById("qrcode_${listContent.postCode}"), "${listContent.postQrcode}");
+                     <#list>
 
+               </script>
 </body>
 </html>
