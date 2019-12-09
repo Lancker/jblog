@@ -10,10 +10,15 @@
 	
 </head>
 <body>
-     正在识别过程，请耐心等一等....
+    <div id="warnInfo">正在识别过程，请耐心等一等....</div>
 <script>
-var redirect_uri= encodeURIComponent('http://i.zuime.com/qywx/check?uuid=${qrcode}');
-window.location='https://open.weixin.qq.com/connect/oauth2/authorize?appid=ww1d0a73183260c1f6&redirect_uri='+redirect_uri+'&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect';
+    var ua= window.navigator.userAgent.toLowerCase();
+    if( (ua.match(/MicroMessenger/i) == 'micromessenger') && (ua.match(/wxwork/i) == 'wxwork') ){
+        var redirect_uri= encodeURIComponent('http://i.zuime.com/qywx/check?uuid=${qrcode}');
+        window.location='https://open.weixin.qq.com/connect/oauth2/authorize?appid=ww1d0a73183260c1f6&redirect_uri='+redirect_uri+'&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect';
+    }else if( ua.match(/micromessenger/i) == 'micromessenger' ){
+        $("#warnInfo").html("请使用企业微信扫码");
+    }
 </script>
 </body>
 </html>
