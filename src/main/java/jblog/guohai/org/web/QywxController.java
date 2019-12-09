@@ -12,11 +12,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/qywx")
 public class QywxController {
+
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
@@ -28,6 +30,9 @@ public class QywxController {
 	@Autowired
 	BlogService blogService;
 
+	@Autowired
+	HttpServletRequest request;
+
 	@RequestMapping(value = "qrcode")
 	public String pay(Model model,String qrcode) throws Exception {
 		model.addAttribute("qrcode", qrcode);
@@ -35,7 +40,7 @@ public class QywxController {
 	}
 
 	@RequestMapping(value = "/check")
-	public String check(Model model, String code,String state,String uuid) {
+	public String check(Model model, String code, String state, String uuid) {
 		logger.info(String.format("企业微信登陆参数 code: %s state:%s uuid:%s", code,state,uuid));
 		if(StringUtils.isEmpty(uuid)){
 			logger.info("物品uuid为空");
@@ -43,7 +48,21 @@ public class QywxController {
 			model.addAttribute("message", "物品信息为空");
 			return "qywx/check";
 		}
-		
+		String agent= request.getHeader("user-agent");
+//		if(agent.indexOf("micromessenger") > 0){
+//			logger.info("用户使用微信扫码");
+//			model.addAttribute("success", false);
+//			model.addAttribute("message", "请使用企业微信扫码");
+//			return "qywx/check";
+//		}
+
+		if(agent.indexOf("wxwork") <= 0){
+			logger.info("用户使用的客户端非企业微信");
+			model.addAttribute("success", false);
+			model.addAttribute("message", "请使用企业微信扫码");
+			return "qywx/check";
+		}
+
 		Result<String> ret = qywxAgent.getAccessToken();
 		if(!ret.isStatus()){
 			logger.info("企业微信授权信息出错");
