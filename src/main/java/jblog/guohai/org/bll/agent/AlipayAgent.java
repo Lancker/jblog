@@ -3,6 +3,8 @@ package jblog.guohai.org.bll.agent;
 import java.util.Date;
 import java.util.Map;
 
+import com.alipay.api.request.*;
+import com.alipay.api.response.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -19,16 +21,6 @@ import com.alipay.api.domain.AlipayTradePrecreateModel;
 import com.alipay.api.domain.AlipayTradeQueryModel;
 import com.alipay.api.domain.ExtendParams;
 import com.alipay.api.internal.util.AlipaySignature;
-import com.alipay.api.request.AlipayFundAccountQueryRequest;
-import com.alipay.api.request.AlipayFundTransOrderQueryRequest;
-import com.alipay.api.request.AlipayFundTransToaccountTransferRequest;
-import com.alipay.api.request.AlipayTradePagePayRequest;
-import com.alipay.api.request.AlipayTradePrecreateRequest;
-import com.alipay.api.request.AlipayTradeQueryRequest;
-import com.alipay.api.response.AlipayFundAccountQueryResponse;
-import com.alipay.api.response.AlipayFundTransOrderQueryResponse;
-import com.alipay.api.response.AlipayTradePrecreateResponse;
-import com.alipay.api.response.AlipayTradeQueryResponse;
 
 import jblog.guohai.org.model.AlipayOrderBean;
 
@@ -168,6 +160,30 @@ public class AlipayAgent {
 		model.setPayeeRealName("钟代麒");
 		model.setRemark("转帐测试中");
 		request.setBizModel(model);
+		request.setNeedEncrypt(true);
+		// 如果是success则修改状态为成功，如果是SYSTEM_ERROR则，不能修改状态，要调用query接口查询结果来决定状态
+		return alipayClient.certificateExecute(request).getBody();
+	}
+
+
+	public String transferHB() throws Exception {
+		AlipayClient alipayClient = buildAlipayClient();
+		AlipayFundTransUniTransferRequest request = new AlipayFundTransUniTransferRequest();
+		request.setBizContent("{" +
+				"\"out_biz_no\":\""+String.format("T0001%s", new Date().getTime())+"\"," +
+				"\"trans_amount\":1.68," +
+				"\"product_code\":\"STD_RED_PACKET\"," +
+				"\"biz_scene\":\"DIRECT_TRANSFER\"," +
+				"\"order_title\":\"新人注册红包\"," +
+				"\"payee_info\":{" +
+				"\"identity\":\"zhongdaiqi@gmail.com\"," +
+				"\"identity_type\":\"ALIPAY_LOGON_ID\"," +
+				"\"name\":\"钟代麒\"," +
+				"    }," +
+				"\"remark\":\"新人注册红包\"," +
+				"\"business_params\":\"{\\\"sub_biz_scene\\\":\\\"REDPACKET\\\",\\\"payer_show_name\\\":\\\"新人红包\\\"}\"," +
+				"  }");
+		AlipayFundTransUniTransferResponse response = alipayClient.certificateExecute(request);
 		request.setNeedEncrypt(true);
 		// 如果是success则修改状态为成功，如果是SYSTEM_ERROR则，不能修改状态，要调用query接口查询结果来决定状态
 		return alipayClient.certificateExecute(request).getBody();

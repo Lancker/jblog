@@ -147,7 +147,6 @@ public class AlipayController {
 	public String transfer(Model model) throws Exception {
 		model.addAttribute("page", alipayAgent.transfer());
 		return "pay/alipay/create";
-
 	}
 	
 	@RequestMapping(value = "transfer/query")
@@ -170,5 +169,11 @@ public class AlipayController {
 		model.addAttribute("page", alipayAgent.accountQuery());
 		return "pay/alipay/create";
 
+	}
+
+	@RequestMapping(value = "transferhb")
+	public String transferHB(Model model) throws Exception {
+		model.addAttribute("page", alipayAgent.transferHB());
+		return "pay/alipay/create";
 	}
 }
