@@ -84,10 +84,19 @@ public class AlipayAgent {
 	public String tradePagePay(AlipayOrderBean orderBean) throws Exception {
 		AlipayClient alipayClient = buildAlipayClient();
 		AlipayTradePagePayRequest request = new AlipayTradePagePayRequest();
+		AlipayTradePagePayModel model = new AlipayTradePagePayModel();
 		request.setReturnUrl(returnUrl);
 		request.setNotifyUrl(notifyUrl);
-		String json = JSON.toJSONString(orderBean);
-		request.setBizContent(json);
+		model.setOutTradeNo(orderBean.getOutTradeNo());
+		model.setSubject(orderBean.getSubject());
+		model.setTotalAmount(orderBean.getTotalAmount());
+		model.setBody(orderBean.getBody());
+		model.setProductCode(orderBean.getProductCode());
+		//model.setQrPayMode("2");
+		//model.setTimeExpire("2m");
+		model.setIntegrationType("ALIAPP");
+		model.setTimeoutExpress("2m");
+		request.setBizModel(model);
 		request.setNeedEncrypt(true);
 		return alipayClient.pageExecute(request).getBody();
 	}
