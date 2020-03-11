@@ -114,6 +114,7 @@ public class AlipayAgent {
 		model.setProductCode(orderBean.getProductCode());
 		model.setQrPayMode("4");
 		model.setQrcodeWidth(200L);
+		model.setIntegrationType("ALIAPP");
 		//model.setTimeExpire("2m");
 		model.setTimeoutExpress("2m");
 		request.setBizModel(model);
